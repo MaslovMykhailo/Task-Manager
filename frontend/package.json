@@ -1,0 +1,11 @@
+{
+  "name": "task-manager-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for Task Manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maslov Michael <maslov.mikhail2000@gmail.com>",
+  "license": "ISC"
+}

@@ -1,0 +1,16 @@
+.logo-wrapper {
+    flex: 1 1 100px;
+    background: purple;
+}
+
+.logo-wrapper > span {
+    position: relative;
+    display: block;
+    text-align: center;
+}
+
+.logo-wrapper > img {
+    position: relative;
+    left: 30%;
+    width: 40%;
+}

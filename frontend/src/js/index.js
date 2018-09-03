@@ -1,9 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Container from './components/Container';
+import React from 'react'
+import { render } from 'react-dom';
+import { createStore } from 'redux';
+
+import Root from './components/Root';
+import rootReducer from './reducers';
 
 
-ReactDOM.render(
-  <Container />,
+const store = createStore(rootReducer);
+
+render(
+  <Root store={store}/>,
   document.getElementById('root')
 );

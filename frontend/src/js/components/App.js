@@ -1,12 +1,14 @@
 import React from 'react';
 
-import Logo from './Logo';
+import Footer from './Footer';
+import MainContent from './MainContent';
 import '../../css/app.css';
 
 const App = () => {
   return (
     <div className={'app'}>
-      <Logo />
+      <Footer/>
+      <MainContent/>
     </div>
   )
 };

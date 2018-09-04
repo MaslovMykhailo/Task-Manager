@@ -1,0 +1,8 @@
+.footer {
+    display: flex;
+}
+
+.language {
+    flex: 4 4 400px;
+    background: rgba(0, 128, 128, .4);
+}

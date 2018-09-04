@@ -1,0 +1,13 @@
+.main-content {
+    display: flex;
+    flex: 3 3 300px;
+}
+
+.creator {
+    flex: 1 1 100px;
+    background: rgba(0, 128, 128, .6);;
+}
+
+.other {
+    flex: 4 4 400px;
+}

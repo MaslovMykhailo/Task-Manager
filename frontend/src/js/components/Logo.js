@@ -6,8 +6,8 @@ import '../../css/logo.css';
 const Logo = () => {
   return (
     <div className={'logo-wrapper'}>
-      <span>Tasks</span>
-      <img src={logo} alt={logo} />
+      <h2>Tasks</h2>
+      <img src={logo} alt={'logo'} />
     </div>
   )
 };

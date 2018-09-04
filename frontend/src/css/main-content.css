@@ -5,9 +5,22 @@
 
 .creator {
     flex: 1 1 100px;
-    background: rgba(0, 128, 128, .6);;
+    background: rgba(0, 128, 128, .6);
+    display:flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
 }
 
 .other {
     flex: 4 4 400px;
+}
+
+.login-button {
+    display: block;
+    margin: 20% auto auto;
+}
+
+.repository {
+
 }

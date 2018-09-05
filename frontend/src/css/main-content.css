@@ -3,7 +3,7 @@
     flex: 3 3 300px;
 }
 
-.creator {
+.info {
     flex: 1 1 100px;
     background: rgba(0, 128, 128, .6);
     display:flex;
@@ -12,15 +12,6 @@
     justify-content: center;
 }
 
-.other {
+.description {
     flex: 4 4 400px;
-}
-
-.login-button {
-    display: block;
-    margin: 20% auto auto;
-}
-
-.repository {
-
 }

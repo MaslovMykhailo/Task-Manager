@@ -1,0 +1,24 @@
+import React from 'react';
+import { GoogleLogin } from 'react-google-login';
+
+import googlePlusIcon from '../../img/g+.svg';
+import '../../css/sign-in-button.css'
+
+const SignInButton = ({ isSignedIn, responseGoogle }) => {
+  return (
+    isSignedIn ? null :
+        <GoogleLogin
+          clientId='172468454646-3fciv2jsjjsq5vgq3qethn0rebm1pu61.apps.googleusercontent.com'
+          buttonText='Login'
+          className={'mdl-button mdl-js-button mdl-button--raised' +
+          ' mdl-js-ripple-effect mdl-button--accent login-button'}
+          onSuccess={responseGoogle}
+          onFailure={() => {console.log('fail')}}
+        >
+          <img src={googlePlusIcon} className={'google-icon'}/>
+          <span>Sign in with Google</span>
+        </GoogleLogin>
+  )
+};
+
+export default SignInButton;

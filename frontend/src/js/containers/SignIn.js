@@ -1,14 +1,17 @@
 import { connect } from 'react-redux';
 
-import { signIn } from '../actions';
+import { signInRequest, signInSuccess, signInFailure } from '../actions';
 import SignInButton from '../components/SignInButton';
 
-const mapStateToProps = state => ({
-  isSignedIn: state.signedIn
+const mapStateToProps = ({ isSignedIn, isRequesting }) => ({
+  isSignedIn,
+  isRequesting
 });
 
 const mapDispatchToProps = dispatch => ({
-  responseGoogle: () => dispatch(signIn())
+  onSuccess: () => dispatch(signInSuccess()),
+  onRequest: () => dispatch(signInRequest()),
+  onFailure: () => dispatch(signInFailure())
 });
 
 export default connect(

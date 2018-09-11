@@ -1,5 +1,6 @@
 import React from 'react';
 import { GoogleLogin } from 'react-google-login';
+import { Redirect } from 'react-router-dom';
 
 import googlePlusIcon from '../../img/g+.svg';
 import '../../css/sign-in-button.css'
@@ -12,7 +13,7 @@ const SignInButton = props => {
     )
   } else {
     return (
-      isSignedIn ? <p>Hello!</p> :
+      isSignedIn ? <Redirect to={'/home'}/> :
           <GoogleLogin
             clientId={'172468454646-3fciv2jsjjsq5vgq3qethn0rebm1pu61.apps.googleusercontent.com'}
             buttonText={'Login'}

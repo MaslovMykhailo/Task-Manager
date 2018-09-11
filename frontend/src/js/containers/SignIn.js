@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { signInRequest, signInSuccess, signInFailure } from '../actions';
 import SignInButton from '../components/SignInButton';
 
-const mapStateToProps = ({ isSignedIn, isRequesting }) => ({
-  isSignedIn,
-  isRequesting
+const mapStateToProps = ({ signIn }) => ({
+  isSignedIn: signIn.isSignedIn,
+  isRequesting: signIn.isRequesting
 });
 
 const mapDispatchToProps = dispatch => ({

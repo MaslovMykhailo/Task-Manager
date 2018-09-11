@@ -3,15 +3,12 @@
     flex: 3 3 300px;
 }
 
-.info {
-    flex: 1 1 100px;
-    background: rgba(0, 128, 128, .6);
-    display:flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: center;
+.bottom-big-wrapper {
+    flex: 4 4 400px;
 }
 
-.description {
-    flex: 4 4 400px;
+.bottom-small-wrapper {
+    flex: 1 1 100px;
+    min-width: 200px;
+    background: rgba(0, 128, 128, .6);
 }

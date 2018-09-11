@@ -1,9 +1,4 @@
-.logo-wrapper {
-    flex: 1 1 100px;
-    background: teal;
-}
-
-.logo-wrapper > h2 {
+.logo > h2 {
     position: relative;
     display: block;
     font-family: Roboto;
@@ -11,10 +6,9 @@
     color: #fff;
 }
 
-.logo-wrapper > img {
-    position: relative;
-    left: 10%;
-    width: 80%;
-    margin-bottom: 5%;
+.logo > img {
+    display: block;
+    margin: auto;
+    width: 170px;
 }
 

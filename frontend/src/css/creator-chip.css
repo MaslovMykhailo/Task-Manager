@@ -1,3 +1,10 @@
+.creator {
+    display:flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+}
+
 .git-icon {
     height: 100%;
     margin-top: -11%;

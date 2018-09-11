@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import signIn from './signIn';
+import status from './status';
 
 export default combineReducers({
-  signIn
+  status
 });

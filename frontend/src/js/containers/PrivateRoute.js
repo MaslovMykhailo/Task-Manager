@@ -20,7 +20,7 @@ const PrivateRoute = ({ component: Component, isSignedIn, ...rest }) => (
 );
 
 const mapStateToProps = state => ({
-  isSignedIn: state.signIn.isSignedIn
+  isSignedIn: state.status.isSignedIn
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

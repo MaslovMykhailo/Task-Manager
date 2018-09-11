@@ -8,13 +8,14 @@ const defaultState = {
 export default (state = defaultState, action) => {
   switch (action.type) {
     case types.SIGN_IN_REQUEST: {
-      return Object.assign({}, state, { isRequesting: true });
+      return { ...state, isRequesting: true };
     }
     case types.SIGN_IN_SUCCESS: {
-      return Object.assign({}, state, { isSignedIn: true, isRequesting: false });
+      return { ...state,  isSignedIn: true, isRequesting: false };
     }
-    case types.SIGN_IN_FAILURE: {
-      return Object.assign({}, state, defaultState)
+    case types.SIGN_IN_FAILURE:
+    case types.SIGN_OUT_SUCCESS: {
+      return { ...defaultState }
     }
     default:
       return state;

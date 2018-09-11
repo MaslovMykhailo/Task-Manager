@@ -22,6 +22,7 @@ const SignInButton = props => {
             onSuccess={onSuccess}
             onFailure={onFailure}
             onRequest={onRequest}
+            isSignedIn={true}
           >
             <img src={googlePlusIcon} className={'google-icon'}/>
             <span>Sign in with Google</span>

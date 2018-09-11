@@ -1,15 +1,12 @@
 import React from 'react';
 
-import Logo from './Logo';
 import '../../css/footer.css';
 
 
-const Footer = () => {
+const Footer = ({ children }) => {
   return (
     <div className={'footer'}>
-      <Logo />
-      <div className={'language'}>
-      </div>
+      { children }
     </div>
   )
 };

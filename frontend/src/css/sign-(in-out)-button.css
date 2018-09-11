@@ -1,4 +1,4 @@
-.login-button, .spinner {
+.login-button, .logout-button, .spinner {
     display: block;
     margin: 20% auto auto;
 }

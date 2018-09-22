@@ -1,20 +1,20 @@
 import React from 'react';
 
-import Footer from './Footer';
+import Header from './Header';
 import MainContent from './MainContent';
 import Logo from './Logo';
 import SignIn from '../containers/SignIn';
 import CreatorChip from './CreatorChip';
-import '../../css/footer.css';
+import '../../css/header.css';
 import '../../css/main-content.css';
 
 
 const Login = () => (
   <div className={'app'}>
-    <Footer>
+    <Header>
       <Logo/>
       <div className={'top-big-wrapper'}/>
-    </Footer>
+    </Header>
     <MainContent>
       <CreatorChip/>
       <div className={'bottom-big-wrapper'}>

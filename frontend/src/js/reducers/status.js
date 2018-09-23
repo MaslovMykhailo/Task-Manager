@@ -15,7 +15,7 @@ export default (state = defaultState, action) => {
     }
     case types.SIGN_IN_FAILURE:
     case types.SIGN_OUT_SUCCESS: {
-      return { ...defaultState }
+      return { ...state, ...defaultState }
     }
     default:
       return state;

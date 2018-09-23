@@ -9,7 +9,7 @@ const mapStateToProps = ({ status }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSuccess: () => dispatch(signInSuccess()),
+  onSuccess: response => dispatch(signInSuccess(response)),
   onRequest: () => dispatch(signInRequest()),
   onFailure: () => dispatch(signInFailure())
 });

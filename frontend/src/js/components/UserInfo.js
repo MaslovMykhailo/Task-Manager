@@ -1,12 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import '../../css/header.css';
 
 
-const UserInfo = () => {
+const UserInfo = ({ user }) => {
   return (
-    <div className={'top-small-wrapper'}>MM</div>
+    <div className={'top-small-wrapper'}>
+      <span>{user.name}</span>
+      <div className={'user-photo'}><img src={user.imageUrl}/></div>
+    </div>
   )
 };
 
-export default UserInfo;
+const mapStateToProps = ({ user }) => ({
+  user
+});
+
+export default connect(mapStateToProps)(UserInfo);

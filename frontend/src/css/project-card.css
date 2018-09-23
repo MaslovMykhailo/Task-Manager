@@ -1,0 +1,42 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.custom-card.mdl-card, .empty-card.mdl-card {
+    width: 325px;
+    height: 175px;
+    margin: 2% 1%;
+    direction: ltr;
+}
+
+.empty-card {
+    background-color: #EEEEEF;
+}
+
+.custom-card > .mdl-card__title {
+    color: #fff;
+    background-color: #46B6AC;
+}
+
+.custom-card > .mdl-card__actions > .mdl-button {
+    color: #00816B;
+}
+
+.custom-card > .mdl-button--icon {
+    position: absolute;
+    right: 10px;
+}
+
+.custom-card > .close {
+    top: 10px;
+    color: white;
+}
+
+.custom-card > .edit {
+    bottom: 10px;
+    color: #00816B;
+}

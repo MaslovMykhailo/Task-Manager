@@ -4,6 +4,7 @@ import Header from './Header';
 import MainContent from './MainContent';
 import UserInfo from './UserInfo';
 import ActionBar from './ActionBar';
+import ProjectsContainer from './ProjectsContainer';
 import '../../css/header.css';
 import '../../css/main-content.css';
 
@@ -15,7 +16,7 @@ const Home = () => (
       <UserInfo/>
     </Header>
     <MainContent>
-      <div className={'bottom-big-wrapper'}/>
+      <ProjectsContainer/>
       <ActionBar/>
     </MainContent>
   </div>

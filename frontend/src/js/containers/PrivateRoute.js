@@ -12,6 +12,7 @@ const PrivateRoute = ({ component: Component, isSignedIn, ...rest }) => (
         <Component {...props} />
       ) : (
         <Redirect
+          push
           to={'/login'}
         />
       )

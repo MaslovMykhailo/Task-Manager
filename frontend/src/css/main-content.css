@@ -5,9 +5,6 @@
 
 .bottom-big-wrapper {
     flex: 4 4 400px;
-
-    overflow: auto;
-    direction: rtl;
 }
 
 .bottom-small-wrapper {

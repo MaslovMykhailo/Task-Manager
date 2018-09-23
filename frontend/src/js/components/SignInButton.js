@@ -9,7 +9,11 @@ const SignInButton = props => {
   const { isSignedIn, isRequesting, onSuccess, onRequest, onFailure } = props;
   if (isRequesting) {
     return (
-      <div className={"mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active spinner"}/>
+    <button className={'mdl-button mdl-js-button mdl-button--raised' +
+    ' mdl-js-ripple-effect mdl-button--accent login-button'} disabled={true}>
+      <img src={googlePlusIcon} className={'google-icon'}/>
+      <span>Sign in with Google</span>
+    </button>
     )
   } else {
     return (

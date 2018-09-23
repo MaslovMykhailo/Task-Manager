@@ -6,7 +6,7 @@ import '../../css/main-content.css';
 import '../../css/project-card.css'
 
 const ProjectsContainer = () => (
-  <div className={'bottom-big-wrapper'}>
+  <div className={'bottom-big-wrapper card-container-wrapper'}>
     <div className={'card-container'}>
       <ProjectCard/>
       <ProjectCard/>

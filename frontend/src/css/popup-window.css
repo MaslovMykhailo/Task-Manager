@@ -1,0 +1,66 @@
+.popup-window {
+    position: absolute;
+    width: 50%;
+    top: 25%;
+    direction: ltr;
+    min-width: 500px;
+    background-color: #EEEEEF;
+}
+
+.popup-window > .mdl-card__title > h1 {
+    font-size: 2em;
+}
+
+.popup-window > .mdl-card__supporting-text {
+    font-size: 1.2em;
+}
+
+.popup-window > .mdl-card__supporting-text > .mdl-textfield {
+    padding: 7px 0;
+}
+
+.popup-window > .mdl-card__supporting-text > .mdl-textfield > input:focus {
+    outline-color: #FF004B;
+}
+
+.popup-window > .mdl-card__supporting-text > .mdl-textfield > #project-name {
+    width: 250px;
+}
+
+.popup-window > .mdl-card__supporting-text > .mdl-textfield > #project-description {
+    width: 400px;
+}
+
+.popup-window > #save-button {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+}
+
+.popup-window > .close {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+}
+
+.popup-window > .color-container {
+    display: flex;
+    padding: 10px 16px;
+    width: 208px;
+    flex-wrap: wrap;
+}
+
+.popup-window > .color-container > div {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.popup-window > .color-container > div:checked {
+    border: 2px solid black;
+}

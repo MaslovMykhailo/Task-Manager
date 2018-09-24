@@ -9,6 +9,7 @@
 
 .popup-window > .mdl-card__title > h1 {
     font-size: 2em;
+    font-weight: 400;
 }
 
 .popup-window > .mdl-card__supporting-text {
@@ -17,6 +18,7 @@
 
 .popup-window > .mdl-card__supporting-text > .mdl-textfield {
     padding: 7px 0;
+    color: black;
 }
 
 .popup-window > .mdl-card__supporting-text > .mdl-textfield > input:focus {
@@ -41,6 +43,7 @@
     position: absolute;
     right: 10px;
     top: 20px;
+    color: #FF004B;
 }
 
 .popup-window > .color-container {
@@ -61,6 +64,6 @@
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
-.popup-window > .color-container > div:checked {
+.popup-window > .color-container > .active {
     border: 2px solid black;
 }

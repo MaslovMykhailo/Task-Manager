@@ -8,6 +8,8 @@ class DialogProjectWindow extends Component {
   constructor(props) {
     super(props);
     
+    console.log(props);
+    
     this.state = {
       projectNameValue: props.projectName || '',
       projectDescriptionValue: props.projectDescription || '',
@@ -24,9 +26,6 @@ class DialogProjectWindow extends Component {
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
     this.handleChangeCardColor = this.handleChangeCardColor.bind(this);
-    
-    this.buttonText = props.type === 'create' ? 'Create' : 'Edit';
-    this.title = this.buttonText + ' project menu';
   }
   
   handleChangeName(event) {
@@ -53,8 +52,29 @@ class DialogProjectWindow extends Component {
   }
   
   render() {
-    const { title, buttonText, state, handleChangeName, handleChangeDescription } = this;
-    const { projectNameValue, projectDescriptionValue, colorsDiv } = state;
+    const type = this.props.type;
+    if (!type) return null;
+    
+    const { state, props, handleChangeName, handleChangeDescription } = this;
+    const { projectNameValue, projectDescriptionValue, colorsDiv, cardColor } = state;
+    const { createProject, editProject, closeWindow } = props;
+  
+    const buttonText = type === 'create' ? 'Create' : 'Edit';
+    const title = buttonText + ' project menu';
+    
+    const projectConfig = {
+      name: projectNameValue,
+      description: projectDescriptionValue,
+      cardColor
+    };
+    
+    const onClickHandler = type === 'create' ?
+      createProject(projectConfig) : editProject(projectConfig);
+    
+    const saveButtonOnClick = () => {
+      onClickHandler();
+      closeWindow();
+    };
     
     return (
       <div className={'popup-window mdl-card mdl-shadow--2dp'}>
@@ -96,12 +116,16 @@ class DialogProjectWindow extends Component {
           {colorsDiv}
         </div>
         
-        <button className="close mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+        <button className="close mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
+                onClick={closeWindow}
+        >
           <i className="material-icons">close</i>
         </button>
         
         <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                id={'save-button'}>
+                id={'save-button'}
+                onClick={saveButtonOnClick}
+        >
           {buttonText}
         </button>
       </div>

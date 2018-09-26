@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import { signInRequest, signInSuccess, signInFailure } from '../actions';
-import SignInButton from '../components/SignInButton';
+import { signInRequest, signInSuccess, signInFailure } from '../../actions/index';
+import SignInButton from '../../components/app/login/SignInButton';
 
 const mapStateToProps = ({ status }) => ({
   isSignedIn: status.isSignedIn,

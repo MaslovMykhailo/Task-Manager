@@ -1,7 +1,7 @@
 import React from 'react';
 
-import SignOut from '../containers/SignOut';
-import '../../css/main-content.css'
+import SignOut from '../../../containers/home/SignOut';
+import '../../../../css/main-content.css'
 
 
 const ActionBar = () => {

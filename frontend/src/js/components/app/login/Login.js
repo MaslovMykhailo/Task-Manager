@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Header from './Header';
-import MainContent from './MainContent';
+import Header from '../Header';
+import MainContent from '../MainContent';
 import Logo from './Logo';
-import SignIn from '../containers/SignIn';
+import SignIn from '../../../containers/login/SignIn';
 import CreatorChip from './CreatorChip';
-import '../../css/header.css';
-import '../../css/main-content.css';
+import '../../../../css/header.css';
+import '../../../../css/main-content.css';
 
 
 const Login = () => (

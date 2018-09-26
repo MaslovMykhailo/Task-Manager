@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import PrivateRoute from '../containers/PrivateRoute';
+import PrivateRoute from '../../containers/PrivateRoute';
 
-import Login from './Login';
-import Home from './Home';
-import '../../css/app.css';
+import Login from './login/Login';
+import Home from './home/Home';
+import '../../../css/app.css';
 
 const App = () => {
   return (

@@ -4,7 +4,8 @@ const defaultState = {
   popupWindow: {
     id: undefined,
     type: undefined
-  }
+  },
+  cardList: []
 };
 
 const createId = (name) => {
@@ -19,11 +20,14 @@ export default (state = defaultState, action) => {
       const { name, description, cardColor } = action.projectConfig;
       const id = createId(name);
       
-      return { ...state, [id]: { name, description, cardColor }};
+      const newCardList = state.cardList.slice();
+      newCardList.push(id);
+      
+      return { ...state, cardList: newCardList, [id]: { name, description, cardColor }};
     }
     case types.EDIT_PROJECT_CARD: {
-      const { id, name, description, cardColor } = action.projectConfig;
-  
+      const { name, description, cardColor, id } = action.projectConfig;
+      
       return { ...state, [id]: { name, description, cardColor }};
     }
     case types.OPEN_POPUP_WINDOW: {
@@ -32,7 +36,7 @@ export default (state = defaultState, action) => {
       return { ...state, popupWindow: { id, type: popupType }};
     }
     case types.CLOSE_POPUP_WINDOW: {
-      return { ...state, ...defaultState };
+      return { ...state, popupWindow: { id: undefined, type: undefined }};
     }
     default:
       return state;

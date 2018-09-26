@@ -1,8 +1,8 @@
 import React from 'react';
 
-import logo from '../../img/logo.svg';
-import '../../css/logo.css';
-import '../../css/header.css';
+import logo from '../../../../img/logo.svg';
+import '../../../../css/logo.css';
+import '../../../../css/header.css';
 
 
 const Logo = () => {

@@ -24,11 +24,6 @@
 
 .custom-card > .mdl-card__title {
     color: #fff;
-    background-color: #46B6AC;
-}
-
-.custom-card > .mdl-card__actions > .mdl-button {
-    color: #00816B;
 }
 
 .custom-card > .mdl-button--icon {
@@ -43,5 +38,4 @@
 
 .custom-card > .edit {
     bottom: 10px;
-    color: #00816B;
 }

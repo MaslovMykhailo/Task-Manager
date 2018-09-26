@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { openPopupWindow } from '../actions';
-import '../../css/project-card.css';
+import { openPopupWindow } from '../../../../actions/index';
+import '../../../../../css/project-card.css';
 
 
 const AddProjectCard = props => (

@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 
-import '../../css/popup-window.css';
-import Colors from '../constants/Colors';
+import '../../../../../css/popup-window.css';
+import Colors from '../../../../constants/Colors';
 
 
 class DialogProjectWindow extends Component {
   constructor(props) {
     super(props);
     
-    console.log(props);
-    
     this.state = {
-      projectNameValue: props.projectName || '',
-      projectDescriptionValue: props.projectDescription || '',
+      projectNameValue: props.name || '',
+      projectDescriptionValue: props.description || '',
       cardColor: props.cardColor || 'teal',
       colorsDiv: Object.keys(Colors).map(color => (
         <div key={color}
@@ -41,10 +39,10 @@ class DialogProjectWindow extends Component {
       this.setState({
         cardColor: changedColor,
         colorsDiv: Object.keys(Colors).map(color => (
-          <div key={color}
-               style={{backgroundColor: Colors[color].RGB}}
-               className={color === changedColor ? 'active': ''}
-               onClick={this.handleChangeCardColor(color)}
+          <div key={ color }
+               style={ {backgroundColor: Colors[color].RGB} }
+               className={ color === changedColor ? 'active': '' }
+               onClick={ this.handleChangeCardColor(color) }
           />
         ))
       })
@@ -52,12 +50,9 @@ class DialogProjectWindow extends Component {
   }
   
   render() {
-    const type = this.props.type;
-    if (!type) return null;
-    
     const { state, props, handleChangeName, handleChangeDescription } = this;
     const { projectNameValue, projectDescriptionValue, colorsDiv, cardColor } = state;
-    const { createProject, editProject, closeWindow } = props;
+    const { createProject, editProject, closeWindow, type, id } = props;
   
     const buttonText = type === 'create' ? 'Create' : 'Edit';
     const title = buttonText + ' project menu';
@@ -65,7 +60,8 @@ class DialogProjectWindow extends Component {
     const projectConfig = {
       name: projectNameValue,
       description: projectDescriptionValue,
-      cardColor
+      cardColor,
+      id
     };
     
     const onClickHandler = type === 'create' ?
@@ -81,7 +77,7 @@ class DialogProjectWindow extends Component {
         
         <div className="mdl-card__title mdl-card--border">
           <h1 className="mdl-card__title-text">
-            {title}
+            { title }
           </h1>
         </div>
         
@@ -91,8 +87,8 @@ class DialogProjectWindow extends Component {
             <input className="mdl-textfield__input"
                    type="text"
                    id='project-name'
-                   value={projectNameValue}
-                   onChange={handleChangeName}
+                   value={ projectNameValue }
+                   onChange={ handleChangeName }
             />
           </div>
         </div>
@@ -103,8 +99,8 @@ class DialogProjectWindow extends Component {
             <input className="mdl-textfield__input"
                    type="text"
                    id='project-description'
-                   value={projectDescriptionValue}
-                   onChange={handleChangeDescription}
+                   value={ projectDescriptionValue }
+                   onChange={ handleChangeDescription }
             />
           </div>
         </div>
@@ -113,20 +109,20 @@ class DialogProjectWindow extends Component {
           Card color
         </div>
         <div className={'color-container'}>
-          {colorsDiv}
+          { colorsDiv }
         </div>
         
         <button className="close mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
-                onClick={closeWindow}
+                onClick={ closeWindow }
         >
           <i className="material-icons">close</i>
         </button>
         
         <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
                 id={'save-button'}
-                onClick={saveButtonOnClick}
+                onClick={ saveButtonOnClick }
         >
-          {buttonText}
+          { buttonText }
         </button>
       </div>
     )

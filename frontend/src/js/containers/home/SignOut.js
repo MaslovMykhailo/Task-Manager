@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import { signOutSuccess } from '../actions';
-import SignOutButton from '../components/SignOutButton';
+import { signOutSuccess } from '../../actions/index';
+import SignOutButton from '../../components/app/home/SignOutButton';
 
 
 const mapStateToProps = ({ status }) => ({

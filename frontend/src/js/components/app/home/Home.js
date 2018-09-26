@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Header from './Header';
-import MainContent from './MainContent';
+import Header from '../Header';
+import MainContent from '../MainContent';
 import UserInfo from './UserInfo';
 import ActionBar from './ActionBar';
-import ProjectsContainer from './ProjectsContainer';
-import '../../css/header.css';
-import '../../css/main-content.css';
+import ProjectsContainer from '../../../containers/home/cards/ProjectsContainer';
+import '../../../../css/header.css';
+import '../../../../css/main-content.css';
 
 
 const Home = () => (

@@ -39,3 +39,19 @@
 .custom-card > .edit {
     bottom: 10px;
 }
+
+.incorrect {
+    position: absolute;
+    color: #FF004B;
+    right: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8em;
+}
+
+.incorrect_hidden {
+    visibility: hidden;
+}
+
+.incorrect_visible {
+    visibility: visible;
+}

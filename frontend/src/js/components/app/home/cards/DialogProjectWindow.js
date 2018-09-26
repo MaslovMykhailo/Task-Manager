@@ -18,7 +18,9 @@ class DialogProjectWindow extends Component {
              className={color === (props.cardColor || 'teal') ? 'active': ''}
              onClick={this.handleChangeCardColor(color)}
         />
-      ))
+      )),
+      validClassNameForName: ' incorrect_visible',
+      validClassNameForDscr: ' incorrect_visible',
     };
   
     this.handleChangeName = this.handleChangeName.bind(this);
@@ -26,12 +28,28 @@ class DialogProjectWindow extends Component {
     this.handleChangeCardColor = this.handleChangeCardColor.bind(this);
   }
   
+  validateInput(input) {
+    return input.length > 0;
+  }
+  
   handleChangeName(event) {
-    this.setState({ projectNameValue: event.target.value });
+    const value = event.target.value;
+    const className = this.validateInput(value) ? ' incorrect_hidden' : ' incorrect_visible';
+    
+    this.setState({
+      projectNameValue: value,
+      validClassNameForName: className
+    });
   }
   
   handleChangeDescription(event) {
-    this.setState({ projectDescriptionValue: event.target.value });
+    const value = event.target.value;
+    const className = this.validateInput(value) ? ' incorrect_hidden' : ' incorrect_visible';
+  
+    this.setState({
+      projectDescriptionValue: value,
+      validClassNameForDscr: className
+    });
   }
   
   handleChangeCardColor(changedColor) {
@@ -50,8 +68,12 @@ class DialogProjectWindow extends Component {
   }
   
   render() {
-    const { state, props, handleChangeName, handleChangeDescription } = this;
-    const { projectNameValue, projectDescriptionValue, colorsDiv, cardColor } = state;
+    const { state, props, handleChangeName, handleChangeDescription, validateInput } = this;
+    const {
+      projectNameValue, projectDescriptionValue,
+      colorsDiv, cardColor,
+      validClassNameForName, validClassNameForDscr
+    } = state;
     const { createProject, editProject, closeWindow, type, id } = props;
   
     const buttonText = type === 'create' ? 'Create' : 'Edit';
@@ -68,8 +90,12 @@ class DialogProjectWindow extends Component {
       createProject(projectConfig) : editProject(projectConfig);
     
     const saveButtonOnClick = () => {
-      onClickHandler();
-      closeWindow();
+      let inputIsValid = validateInput(projectNameValue) && validateInput(projectDescriptionValue);
+      
+      if (inputIsValid) {
+        onClickHandler();
+        closeWindow();
+      }
     };
     
     return (
@@ -82,7 +108,9 @@ class DialogProjectWindow extends Component {
         </div>
         
         <div className="mdl-card__supporting-text">
-          Project name<br/>
+          Project name
+          <span className={'incorrect' + validClassNameForName}>Incorrect name!</span>
+          <br/>
           <div className="mdl-textfield mdl-js-textfield">
             <input className="mdl-textfield__input"
                    type="text"
@@ -94,7 +122,9 @@ class DialogProjectWindow extends Component {
         </div>
         
         <div className="mdl-card__supporting-text">
-          Project description<br/>
+          Project description
+          <span className={'incorrect' + validClassNameForDscr}>Incorrect description!</span>
+          <br/>
           <div className="mdl-textfield mdl-js-textfield">
             <input className="mdl-textfield__input"
                    type="text"

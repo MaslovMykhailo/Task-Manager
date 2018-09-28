@@ -1,11 +1,11 @@
 import * as types from '../constants/ActionTypes';
 
 const defaultState = {
+  list: [],
   popupWindow: {
     id: undefined,
     type: undefined
-  },
-  cardList: []
+  }
 };
 
 const createId = (name) => {
@@ -17,18 +17,21 @@ const createId = (name) => {
 export default (state = defaultState, action) => {
   switch (action.type) {
     case types.CREATE_PROJECT_CARD: {
-      const { name, description, cardColor } = action.projectConfig;
-      const id = createId(name);
+      const id = createId(action.projectConfig.name);
       
-      const newCardList = state.cardList.slice();
-      newCardList.push(id);
+      const newCardList = state.list.slice();
+      newCardList.push({ ...action.projectConfig, id });
       
-      return { ...state, cardList: newCardList, [id]: { name, description, cardColor }};
+      return { ...state, list: newCardList };
     }
     case types.EDIT_PROJECT_CARD: {
-      const { name, description, cardColor, id } = action.projectConfig;
+      const editedCard = { ...action.projectConfig };
       
-      return { ...state, [id]: { name, description, cardColor }};
+      const index = state.list.findIndex(card => card.id === editedCard.id);
+      const newCardList = state.list.slice();
+      newCardList.splice(index, 1, editedCard);
+      
+      return { ...state, list: newCardList };
     }
     case types.OPEN_POPUP_WINDOW: {
       const { id, popupType } = action;

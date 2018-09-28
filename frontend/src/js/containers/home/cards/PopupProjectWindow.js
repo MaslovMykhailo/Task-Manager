@@ -5,11 +5,11 @@ import DialogProjectWindow from '../../../components/app/home/cards/DialogProjec
 
 
 const mapStateToProps = state => {
-  const type = state.projects.popupWindow.type;
+  const type = state.cards.popupWindow.type;
   
   if (type === 'edit') {
-    const id = state.projects.popupWindow.id;
-    const { name, description, cardColor } = state.projects[id];
+    const id = state.cards.popupWindow.id;
+    const { name, description, cardColor } = state.cards.list.find(card => card.id === id);
     
     return {
       id,

@@ -19,8 +19,8 @@ class DialogProjectWindow extends Component {
              onClick={this.handleChangeCardColor(color)}
         />
       )),
-      validClassNameForName: ' incorrect_visible',
-      validClassNameForDscr: ' incorrect_visible',
+      validClassNameForName: props.name ? 'incorrect_hidden' :' incorrect_visible',
+      validClassNameForDscr: props.description ? 'incorrect_hidden' :' incorrect_visible',
     };
   
     this.handleChangeName = this.handleChangeName.bind(this);

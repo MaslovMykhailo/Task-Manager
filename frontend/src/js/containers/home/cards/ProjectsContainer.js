@@ -8,16 +8,15 @@ import '../../../../css/main-content.css';
 import '../../../../css/project-card.css'
 
 
-const ProjectsContainer = ({ projects, popupWindowIsOpen }) => {
-  const cards = projects.cardList.map(id => {
-    const config = { ...projects[id], id };
-    return <ProjectCard key={ id } config={ config } />
+const ProjectsContainer = ({ cardsList, popupWindowIsOpen }) => {
+  const projectCards = cardsList.map(card => {
+    return <ProjectCard key={ card.id } config={ card } />
   });
   
   return (
     <div className={'bottom-big-wrapper card-container-wrapper'}>
       <div className={'card-container'}>
-        { cards }
+        { projectCards }
         <AddProjectCard/>
       </div>
       { popupWindowIsOpen ? <PopupProjectWindow /> : null }
@@ -25,8 +24,8 @@ const ProjectsContainer = ({ projects, popupWindowIsOpen }) => {
   )
 };
 
-const mapStateToProps = ({ projects, status }) => ({
-  projects,
+const mapStateToProps = ({  cards, status }) => ({
+  cardsList: cards.list,
   popupWindowIsOpen: status.popupWindowIsOpen
 });
 

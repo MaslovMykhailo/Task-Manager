@@ -17,3 +17,7 @@ export const editProjectCard = projectConfig => ({
   type: types.EDIT_PROJECT_CARD,
   projectConfig
 });
+export const removeProjectCard = id => ({
+  type: types.REMOVE_PROJECT_CARD,
+  id
+});

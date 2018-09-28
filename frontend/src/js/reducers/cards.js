@@ -33,6 +33,13 @@ export default (state = defaultState, action) => {
       
       return { ...state, list: newCardList };
     }
+    case types.REMOVE_PROJECT_CARD: {
+      const index = state.list.findIndex(card => card.id === action.id);
+      const newCardList = state.list.slice();
+      newCardList.splice(index, 1);
+    
+      return { ...state, list: newCardList };
+    }
     case types.OPEN_POPUP_WINDOW: {
       const { id, popupType } = action;
       

@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Colors from '../../../../constants/Colors';
-import { openPopupWindow } from '../../../../actions/index';
+import { openPopupWindow, removeProjectCard } from '../../../../actions/index';
 import '../../../../../css/project-card.css'
 
 
-const ProjectCard = ({ config, editCard }) => {
+const ProjectCard = ({ config, editCard, removeCard }) => {
   const { name, description, cardColor } = config;
   
   return (
@@ -24,7 +24,9 @@ const ProjectCard = ({ config, editCard }) => {
           OPEN
         </a>
       </div>
-      <button className="close mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      <button className="close mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
+              onClick={ removeCard(config.id) }
+      >
         <i className="material-icons">close</i>
       </button>
       <button className="edit mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
@@ -43,6 +45,9 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
   editCard: id => () => {
     dispatch(openPopupWindow('edit', id));
+  },
+  removeCard: id => () => {
+    dispatch(removeProjectCard(id));
   }
 });
 

@@ -25,7 +25,7 @@ const ProjectsContainer = ({ cardsList, popupWindowIsOpen }) => {
 };
 
 const mapStateToProps = ({  cards, status }) => ({
-  cardsList: cards.list,
+  cardsList: cards.present.list,
   popupWindowIsOpen: status.popupWindowIsOpen
 });
 

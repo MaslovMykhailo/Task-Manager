@@ -1,0 +1,6 @@
+.undo-redo-container {
+    margin-bottom: 20%;
+    display: flex;
+    width: 70%;
+    justify-content: space-around;
+}

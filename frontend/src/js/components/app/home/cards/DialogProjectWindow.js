@@ -93,8 +93,8 @@ class DialogProjectWindow extends Component {
       let inputIsValid = validateInput(projectNameValue) && validateInput(projectDescriptionValue);
       
       if (inputIsValid) {
-        onClickHandler();
         closeWindow();
+        onClickHandler();
       }
     };
     

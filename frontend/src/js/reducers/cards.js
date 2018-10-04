@@ -1,4 +1,7 @@
+import undoable, { excludeAction } from 'redux-undo'
+
 import * as types from '../constants/ActionTypes';
+
 
 const defaultState = {
   list: [],
@@ -14,7 +17,7 @@ const createId = (name) => {
     '-' + new Date().getDate();
 };
 
-export default (state = defaultState, action) => {
+const cards = (state = defaultState, action) => {
   switch (action.type) {
     case types.CREATE_PROJECT_CARD: {
       const id = createId(action.projectConfig.name);
@@ -51,4 +54,8 @@ export default (state = defaultState, action) => {
     default:
       return state;
   }
-}
+};
+
+export default undoable(cards, {
+  filter: excludeAction([types.OPEN_POPUP_WINDOW, types.CLOSE_POPUP_WINDOW, types.SIGN_IN_SUCCESS])
+});

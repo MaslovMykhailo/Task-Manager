@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 
 module.exports = {
@@ -10,7 +12,7 @@ module.exports = {
   
   output: {
     path: path.join(__dirname, '/dist/'),
-    filename: 'bundle.js',
+    filename: 'bundle.[hash].js',
     publicPath: './'
   },
   
@@ -18,7 +20,8 @@ module.exports = {
   
   optimization: {
     minimizer: [
-      new UglifyJsPlugin()
+      new UglifyJsPlugin(),
+      new OptimizeCSSAssetsPlugin({})
     ]
   },
   
@@ -33,6 +36,10 @@ module.exports = {
       template: './src/index.tpl.html',
       inject: 'body',
       filename: 'index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].[hash].css",
+      chunkFilename: "[id].css"
     })
   ],
   
@@ -40,7 +47,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
         test: /\.(png|svg|jpg|gif)$/,

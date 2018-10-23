@@ -57,5 +57,11 @@ const cards = (state = defaultState, action) => {
 };
 
 export default undoable(cards, {
-  filter: excludeAction([types.OPEN_POPUP_WINDOW, types.CLOSE_POPUP_WINDOW, types.SIGN_IN_SUCCESS])
+  filter: excludeAction([
+    types.OPEN_POPUP_WINDOW,
+    types.CLOSE_POPUP_WINDOW,
+    types.SIGN_IN_SUCCESS,
+    types.SIGN_IN_REQUEST,
+    types.SIGN_OUT_SUCCESS
+  ])
 });

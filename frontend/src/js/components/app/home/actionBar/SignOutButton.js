@@ -2,8 +2,6 @@ import React from 'react';
 import { GoogleLogout } from 'react-google-login';
 import { Redirect } from 'react-router-dom';
 
-import '../../../../../css/sign-(in-out)-button.css';
-
 
 const SignOutButton = props => {
   const { isSignedIn, onSuccess } = props;

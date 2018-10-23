@@ -1,8 +1,6 @@
 import React from 'react';
 
 import gitIcon from '../../../../img/git.svg';
-import '../../../../css/creator-chip.css';
-import '../../../../css/main-content.css';
 
 
 const CreatorChip = () => (

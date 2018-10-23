@@ -1,16 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import ProjectCard from '../../../components/app/home/cards/ProjectCard';
-import AddProjectCard from '../../../components/app/home/cards/AddProjectCard';
+import Card from './Card';
+import AddProjectCard from './AddProjectCard';
 import PopupProjectWindow from './PopupProjectWindow';
-import '../../../../css/main-content.css';
-import '../../../../css/project-card.css'
 
 
 const ProjectsContainer = ({ cardsList, popupWindowIsOpen }) => {
   const projectCards = cardsList.map(card => {
-    return <ProjectCard key={ card.id } config={ card } />
+    return <Card key={ card.id } config={ card } />
   });
   
   return (

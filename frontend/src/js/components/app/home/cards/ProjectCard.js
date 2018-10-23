@@ -1,9 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import Colors from '../../../../constants/Colors';
-import { openPopupWindow, removeProjectCard } from '../../../../actions/index';
-import '../../../../../css/project-card.css'
 
 
 const ProjectCard = ({ config, editCard, removeCard }) => {
@@ -38,17 +35,4 @@ const ProjectCard = ({ config, editCard, removeCard }) => {
     </div>
 )};
 
-const mapStateToProps = (state, ownProps) => ({
-  config: ownProps.config
-});
-
-const mapDispatchToProps = dispatch => ({
-  editCard: id => () => {
-    dispatch(openPopupWindow('edit', id));
-  },
-  removeCard: id => () => {
-    dispatch(removeProjectCard(id));
-  }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectCard);
+export default ProjectCard;

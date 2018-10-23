@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '../../../../../css/undo-redo-buttons.css';
-
 
 const UndoRedoButtons = ({ canUndo, canRedo, onUndo, onRedo }) => (
   <div className="undo-redo-container">

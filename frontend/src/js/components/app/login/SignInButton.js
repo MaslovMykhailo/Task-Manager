@@ -3,7 +3,7 @@ import { GoogleLogin } from 'react-google-login';
 import { Redirect } from 'react-router-dom';
 
 import googlePlusIcon from '../../../../img/g+.svg';
-import '../../../../css/sign-(in-out)-button.css'
+
 
 const SignInButton = props => {
   const { isSignedIn, isRequesting, onSuccess, onRequest, onFailure } = props;

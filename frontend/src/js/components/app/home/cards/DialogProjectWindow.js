@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import '../../../../../css/popup-window.css';
 import Colors from '../../../../constants/Colors';
 
 
@@ -10,7 +9,7 @@ class DialogProjectWindow extends Component {
     
     this.state = {
       projectNameValue: props.name || '',
-      projectDescriptionValue: props.description || '',
+      projectDescriptionValue: props.description || ' ',
       cardColor: props.cardColor || 'teal',
       colorsDiv: Object.keys(Colors).map(color => (
         <div key={color}
@@ -20,7 +19,6 @@ class DialogProjectWindow extends Component {
         />
       )),
       validClassNameForName: props.name ? 'incorrect_hidden' :' incorrect_visible',
-      validClassNameForDscr: props.description ? 'incorrect_hidden' :' incorrect_visible',
     };
   
     this.handleChangeName = this.handleChangeName.bind(this);
@@ -44,11 +42,9 @@ class DialogProjectWindow extends Component {
   
   handleChangeDescription(event) {
     const value = event.target.value;
-    const className = this.validateInput(value) ? ' incorrect_hidden' : ' incorrect_visible';
   
     this.setState({
       projectDescriptionValue: value,
-      validClassNameForDscr: className
     });
   }
   
@@ -71,8 +67,7 @@ class DialogProjectWindow extends Component {
     const { state, props, handleChangeName, handleChangeDescription, validateInput } = this;
     const {
       projectNameValue, projectDescriptionValue,
-      colorsDiv, cardColor,
-      validClassNameForName, validClassNameForDscr
+      colorsDiv, cardColor, validClassNameForName
     } = state;
     const { createProject, editProject, closeWindow, type, id } = props;
   
@@ -90,7 +85,7 @@ class DialogProjectWindow extends Component {
       createProject(projectConfig) : editProject(projectConfig);
     
     const saveButtonOnClick = () => {
-      let inputIsValid = validateInput(projectNameValue) && validateInput(projectDescriptionValue);
+      let inputIsValid = validateInput(projectNameValue);
       
       if (inputIsValid) {
         closeWindow();
@@ -123,7 +118,6 @@ class DialogProjectWindow extends Component {
         
         <div className="mdl-card__supporting-text">
           Project description
-          <span className={'incorrect' + validClassNameForDscr}>Incorrect description!</span>
           <br/>
           <div className="mdl-textfield mdl-js-textfield">
             <input className="mdl-textfield__input"

@@ -1,24 +1,21 @@
 import React from 'react';
 
-import Header from '../Header';
-import MainContent from '../MainContent';
-import UserInfo from './UserInfo';
+import Content from '../Content';
+import UserInfo from '../../../containers/home/UserInfo';
 import ActionBar from './actionBar/ActionBar';
 import ProjectsContainer from '../../../containers/home/cards/ProjectsContainer';
-import '../../../../css/header.css';
-import '../../../../css/main-content.css';
 
 
 const Home = () => (
   <div className={'app'}>
-    <Header>
+    <Content className={'header'}>
       <div className={'top-big-wrapper'}><span className={'caption'}>My projects</span></div>
       <UserInfo/>
-    </Header>
-    <MainContent>
+    </Content>
+    <Content className={'main-content'}>
       <ProjectsContainer/>
       <ActionBar/>
-    </MainContent>
+    </Content>
   </div>
 );
 

@@ -4,7 +4,7 @@ import React from 'react';
 const UndoRedoButtons = ({ canUndo, canRedo, onUndo, onRedo }) => (
   <div className="undo-redo-container">
     <button id="undo"
-            className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"
+            className="mdl-button mdl-button--fab mdl-button--colored"
             onClick={onUndo}
             disabled={!canUndo}
     >
@@ -12,7 +12,7 @@ const UndoRedoButtons = ({ canUndo, canRedo, onUndo, onRedo }) => (
     </button>
     <div className="mdl-tooltip mdl-tooltip--top" htmlFor="undo">Undo</div>
     <button id="redo"
-            className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"
+            className="mdl-button mdl-button--fab mdl-button--colored"
             onClick={onRedo}
             disabled={!canRedo}
     >

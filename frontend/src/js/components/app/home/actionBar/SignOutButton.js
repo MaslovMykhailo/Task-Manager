@@ -8,8 +8,7 @@ const SignOutButton = props => {
   return (
     isSignedIn ?
         <GoogleLogout
-          className={'mdl-button mdl-js-button mdl-button--raised' +
-          ' mdl-js-ripple-effect mdl-button--accent logout-button'}
+          className={'mdl-button mdl-button--raised mdl-button--accent logout-button'}
           buttonText="Sign Out"
           onLogoutSuccess={onSuccess}
         /> :

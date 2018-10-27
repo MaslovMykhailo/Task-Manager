@@ -106,7 +106,7 @@ class DialogProjectWindow extends Component {
           Project name
           <span className={'incorrect' + validClassNameForName}>Incorrect name!</span>
           <br/>
-          <div className="mdl-textfield mdl-js-textfield">
+          <div className="mdl-textfield">
             <input className="mdl-textfield__input"
                    type="text"
                    id='project-name'
@@ -119,7 +119,7 @@ class DialogProjectWindow extends Component {
         <div className="mdl-card__supporting-text">
           Project description
           <br/>
-          <div className="mdl-textfield mdl-js-textfield">
+          <div className="mdl-textfield">
             <input className="mdl-textfield__input"
                    type="text"
                    id='project-description'
@@ -136,13 +136,13 @@ class DialogProjectWindow extends Component {
           { colorsDiv }
         </div>
         
-        <button className="close mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
+        <button className="close mdl-button mdl-button--icon"
                 onClick={ closeWindow }
         >
           <i className="material-icons">close</i>
         </button>
         
-        <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+        <button className="mdl-button mdl-button--raised mdl-button--accent"
                 id={'save-button'}
                 onClick={ saveButtonOnClick }
         >

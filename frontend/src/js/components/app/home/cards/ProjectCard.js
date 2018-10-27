@@ -15,18 +15,18 @@ const ProjectCard = ({ config, editCard, removeCard }) => {
       </div>
       <div className="mdl-card__supporting-text">{ description }</div>
       <div className="mdl-card__actions mdl-card--border">
-        <a className="mdl-button mdl-js-button mdl-js-ripple-effect"
+        <a className="mdl-button"
            style={{ color: Colors[cardColor].darkRGB }}
         >
           OPEN
         </a>
       </div>
-      <button className="close mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
+      <button className="close mdl-button mdl-button--icon"
               onClick={ removeCard(config.id) }
       >
         <i className="material-icons">close</i>
       </button>
-      <button className="edit mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect"
+      <button className="edit mdl-button mdl-button--icon"
               style={{ color: Colors[cardColor].darkRGB }}
               onClick={ editCard(config.id) }
       >

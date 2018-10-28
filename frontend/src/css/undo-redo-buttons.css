@@ -4,3 +4,15 @@
     width: 70%;
     justify-content: space-around;
 }
+
+.undo-redo-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.button-name {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 5px;
+}

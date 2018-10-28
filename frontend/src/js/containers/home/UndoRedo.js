@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
-import { ActionCreators as UndoActionCreators } from 'redux-undo';
+import { redoCards, undoCards } from '../../actions';
+
 
 import UndoRedoButtons from '../../components/app/home/actionBar/UndoRedoButtons';
 
@@ -9,9 +10,10 @@ const mapStateToProps = ({ cards }) => ({
   canRedo: cards.future.length > 0
 });
 
-const mapDispatchToProps = ({
-  onUndo: UndoActionCreators.undo,
-  onRedo: UndoActionCreators.redo
+
+const mapDispatchToProps = dispatch => ({
+  onUndo: () => dispatch(undoCards()),
+  onRedo: () => dispatch(redoCards())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UndoRedoButtons)

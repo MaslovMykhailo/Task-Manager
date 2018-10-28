@@ -1,4 +1,4 @@
-import undoable, { excludeAction } from 'redux-undo'
+import undoable, { includeAction } from 'redux-undo'
 
 import * as types from '../constants/ActionTypes';
 
@@ -57,11 +57,11 @@ const cards = (state = defaultState, action) => {
 };
 
 export default undoable(cards, {
-  filter: excludeAction([
-    types.OPEN_POPUP_WINDOW,
-    types.CLOSE_POPUP_WINDOW,
-    types.SIGN_IN_SUCCESS,
-    types.SIGN_IN_REQUEST,
-    types.SIGN_OUT_SUCCESS
+  undoType: types.UNDO_CARDS,
+  redoType: types.REDO_CARDS,
+  filter: includeAction([
+    types.CREATE_PROJECT_CARD,
+    types.EDIT_PROJECT_CARD,
+    types.REMOVE_PROJECT_CARD
   ])
 });

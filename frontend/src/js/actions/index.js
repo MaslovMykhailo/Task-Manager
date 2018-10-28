@@ -5,6 +5,8 @@ export const signInRequest = () => ({ type: types.SIGN_IN_REQUEST });
 export const signInSuccess = response => ({ type: types.SIGN_IN_SUCCESS, response });
 export const signInFailure = () => ({ type: types.SIGN_IN_FAILURE });
 export const signOutSuccess = () => ({ type: types.SIGN_OUT_SUCCESS });
+
+
 export const openPopupWindow = (popupType, id) => ({ type: types.OPEN_POPUP_WINDOW, popupType, id });
 export const closePopupWindow = () => ({ type: types.CLOSE_POPUP_WINDOW });
 
@@ -21,3 +23,5 @@ export const removeProjectCard = id => ({
   type: types.REMOVE_PROJECT_CARD,
   id
 });
+export const undoCards = () => ({ type: types.UNDO_CARDS});
+export const redoCards = () => ({ type: types.REDO_CARDS});

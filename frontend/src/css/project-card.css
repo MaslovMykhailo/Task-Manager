@@ -14,8 +14,13 @@
 .custom-card.mdl-card, .empty-card.mdl-card {
     width: 325px;
     height: 175px;
-    margin: 2% 1%;
+    margin: 20px 10px;
     direction: ltr;
+}
+
+.custom-card {
+    z-index: 1;
+    cursor: move;
 }
 
 .empty-card {

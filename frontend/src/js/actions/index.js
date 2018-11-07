@@ -23,5 +23,9 @@ export const removeProjectCard = id => ({
   type: types.REMOVE_PROJECT_CARD,
   id
 });
+export const moveProjectCard = (oldIndex, newIndex) => ({
+  type: types.MOVE_PROJECT_CARD,
+  oldIndex, newIndex
+});
 export const undoCards = () => ({ type: types.UNDO_CARDS});
 export const redoCards = () => ({ type: types.REDO_CARDS});

@@ -1,4 +1,5 @@
-import undoable, { includeAction } from 'redux-undo'
+import undoable, { includeAction } from 'redux-undo';
+import { arrayMove } from 'react-sortable-hoc';
 
 import * as types from '../constants/ActionTypes';
 
@@ -43,6 +44,10 @@ const cards = (state = defaultState, action) => {
     
       return { ...state, list: newCardList };
     }
+    case types.MOVE_PROJECT_CARD: {
+      const { oldIndex, newIndex } = action;
+      return { ...state, list: arrayMove(state.list, oldIndex, newIndex) }
+    }
     case types.OPEN_POPUP_WINDOW: {
       const { id, popupType } = action;
       
@@ -62,6 +67,7 @@ export default undoable(cards, {
   filter: includeAction([
     types.CREATE_PROJECT_CARD,
     types.EDIT_PROJECT_CARD,
-    types.REMOVE_PROJECT_CARD
+    types.REMOVE_PROJECT_CARD,
+    types.MOVE_PROJECT_CARD
   ])
 });

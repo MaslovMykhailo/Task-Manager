@@ -68,3 +68,53 @@
 .popup-window > .color-container > .active {
     border: 2px solid black;
 }
+
+.incorrect {
+    position: absolute;
+    color: #FF004B;
+    right: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8em;
+}
+
+.incorrect_hidden {
+    visibility: hidden;
+}
+
+.incorrect_visible {
+    visibility: visible;
+}
+
+@media screen and (max-width: 1000px) {
+    .popup-window {
+        width: 70%;
+    }
+    .popup-window > .mdl-card__title > h1 {
+        font-size: 56px;
+        font-weight: 400;
+    }
+    .popup-window > .mdl-card__supporting-text {
+        font-size: 36px;
+    }
+    .popup-window > .mdl-card__supporting-text > .mdl-textfield {
+        padding: 25px 0;
+    }
+    .popup-window > .mdl-card__supporting-text > .mdl-textfield > .mdl-textfield__input {
+        font-size: 32px;
+    }
+    .popup-window > .color-container {
+        display: flex;
+        width: 332px;
+    }
+    .popup-window > .color-container > div {
+        cursor: pointer;
+        width: 65px;
+        height: 65px;
+        margin-right: 18px;
+        margin-bottom: 10px;
+    }
+    .popup-window > #save-button {
+        font-size: 22px;
+        height: 40px;
+    }
+}

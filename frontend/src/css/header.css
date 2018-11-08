@@ -49,4 +49,13 @@
         height: 230px;
         min-width: 300px;
     }
+    .top-small-wrapper > span {
+        font-size: 26px;
+    }
+    .top-small-wrapper > .user-photo {
+        width: 40%;
+    }
+    .top-big-wrapper > .caption {
+        font-size: 84px;
+    }
 }

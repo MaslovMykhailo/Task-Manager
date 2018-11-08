@@ -14,4 +14,9 @@
         height: 70px;
         width: 500px;
     }
+    .logout-button {
+        margin: 0 4%;
+        font-size: 24px;
+        height: 35px;
+    }
 }

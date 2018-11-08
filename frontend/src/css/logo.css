@@ -1,6 +1,6 @@
 .logo > h2 {
     position: relative;
-    font-family: Roboto;
+    font-family: "Roboto", sans-serif;
     margin: 3% 15% 0;
     color: #fff;
 }
@@ -9,5 +9,16 @@
     display: block;
     margin: auto;
     width: 170px;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .logo > h2 {
+        font-size: 72px;
+        margin: 8% 30% 0;
+    }
+    .logo > img {
+        width: 250px;
+    }
 }
 

@@ -7,3 +7,11 @@
     height: 100%;
     margin-bottom: 2%;
 }
+
+@media screen and (max-width: 1000px) {
+    .login-button {
+        font-size: 36px;
+        height: 70px;
+        width: 500px;
+    }
+}

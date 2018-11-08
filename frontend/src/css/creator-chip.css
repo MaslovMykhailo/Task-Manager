@@ -3,9 +3,30 @@
     flex-direction: row;
     align-items: flex-end;
     justify-content: center;
+    padding-bottom: 2%;
+    padding-top: 2%;
 }
 
 .git-icon {
     height: 100%;
-    margin-top: -11%;
+    margin-top: -10%;
+}
+
+@media screen and (max-width: 1000px) {
+    .creator .mdl-chip__text {
+        font-size: 36px;
+    }
+    .creator .mdl-chip__contact {
+        height: 70px;
+        width: 70px;
+        border-radius: 35px;
+    }
+    .creator .mdl-chip {
+        height: 70px;
+        border-radius: 35px;
+    }
+    .git-icon {
+        height: 100%;
+        margin-top: -4%;
+    }
 }

@@ -10,5 +10,14 @@
 .bottom-small-wrapper {
     flex: 1 1 100px;
     min-width: 200px;
-    background: rgba(0, 128, 128, .6);
+    background: rgba(0, 128, 128, .4);
+}
+
+@media screen and (max-width: 1000px) {
+    .main-content {
+        flex-direction: column-reverse;
+    }
+    .bottom-small-wrapper {
+        flex: 0 0 auto;
+    }
 }

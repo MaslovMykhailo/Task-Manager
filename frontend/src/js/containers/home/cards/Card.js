@@ -1,11 +1,15 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import { openPopupWindow, removeProjectCard } from '../../../actions';
 import ProjectCard from '../../../components/app/home/cards/ProjectCard';
 
 
 const mapStateToProps = (state, ownProps) => ({
-  config: ownProps.config
+  config: ownProps.config,
+  openProject: () => {
+    ownProps.history.push('/project=' + ownProps.config.id);
+  }
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -17,4 +21,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectCard);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectCard));

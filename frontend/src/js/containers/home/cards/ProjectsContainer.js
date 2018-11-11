@@ -14,7 +14,7 @@ const ProjectsContainer = ({ cardsList, popupWindowIsOpen, onSortEnd }) => {
   });
   
   const shouldCancelStart = e => {
-    const disabledElements = ['input', 'textarea', 'select', 'option', 'button', 'i'];
+    const disabledElements = ['input', 'textarea', 'select', 'option', 'button', 'i', 'a'];
     if (disabledElements.indexOf(e.target.tagName.toLowerCase()) !== -1) {
       return true;
     }

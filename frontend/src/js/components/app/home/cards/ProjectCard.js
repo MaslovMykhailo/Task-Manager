@@ -3,8 +3,8 @@ import React from 'react';
 import Colors from '../../../../constants/Colors';
 
 
-const ProjectCard = ({ config, editCard, removeCard }) => {
-  const { name, description, cardColor } = config;
+const ProjectCard = ({ config, editCard, removeCard, openProject }) => {
+  const { name, description, cardColor, id } = config;
   
   return (
     <div className="custom-card mdl-card mdl-shadow--4dp">
@@ -17,18 +17,19 @@ const ProjectCard = ({ config, editCard, removeCard }) => {
       <div className="mdl-card__actions mdl-card--border">
         <a className="mdl-button"
            style={{ color: Colors[cardColor].darkRGB }}
+           onClick={openProject}
         >
           OPEN
         </a>
       </div>
       <button className="close mdl-button mdl-button--icon"
-              onClick={ removeCard(config.id) }
+              onClick={ removeCard(id) }
       >
         <i className="material-icons">close</i>
       </button>
       <button className="edit mdl-button mdl-button--icon"
               style={{ color: Colors[cardColor].darkRGB }}
-              onClick={ editCard(config.id) }
+              onClick={ editCard(id) }
       >
         <i className="material-icons">edit</i>
       </button>

@@ -1,15 +1,14 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
 
+
+import '../../css/app.css';
 import App from './app/App';
 
 
 const Root = ({ store }) => (
   <Provider store={store}>
-    <Router>
-      <App/>
-    </Router>
+    <App/>
   </Provider>
 );
 

@@ -3,6 +3,7 @@ import { GoogleLogin } from 'react-google-login';
 import { Redirect } from 'react-router-dom';
 
 import googlePlusIcon from '../../../../img/g+.svg';
+import { CLIENT_ID } from '../../../constants/Client';
 
 
 const SignInButton = props => {
@@ -19,7 +20,7 @@ const SignInButton = props => {
     return (
       isSignedIn ? <Redirect to={'/home'}/> :
           <GoogleLogin
-            clientId={'172468454646-3fciv2jsjjsq5vgq3qethn0rebm1pu61.apps.googleusercontent.com'}
+            clientId={CLIENT_ID}
             buttonText={'Login'}
             className={'mdl-button mdl-button--raised mdl-button--accent login-button'}
             onSuccess={onSuccess}

@@ -14,3 +14,7 @@ export const REMOVE_PROJECT_CARD = 'REMOVE_PROJECT_CARD';
 export const MOVE_PROJECT_CARD = 'MOVE_PROJECT_CARD';
 export const UNDO_CARDS = 'UNDO_CARDS';
 export const REDO_CARDS = 'REDO_CARDS';
+
+
+export const OPEN_WS = 'OPEN_WS';
+export const CLOSE_WS = 'CLOSE_WS';

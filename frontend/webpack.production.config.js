@@ -35,7 +35,8 @@ module.exports = {
       title: 'Task Manager Dev',
       template: './src/index.tpl.html',
       inject: 'body',
-      filename: 'index.html'
+      filename: 'index.html',
+      favicon: "./src/favicon.ico",
     }),
     new MiniCssExtractPlugin({
       filename: "[name].[hash].css",

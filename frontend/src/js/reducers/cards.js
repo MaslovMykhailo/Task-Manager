@@ -48,6 +48,10 @@ const cards = (state = defaultState, action) => {
       const { oldIndex, newIndex } = action;
       return { ...state, list: arrayMove(state.list, oldIndex, newIndex) }
     }
+    case types.GET_ROMOTE_CARDS: {
+      const { cards } = action;
+      return { ...state, list: cards };
+    }
     case types.OPEN_POPUP_WINDOW: {
       const { id, popupType } = action;
       

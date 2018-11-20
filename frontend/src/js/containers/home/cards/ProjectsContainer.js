@@ -8,7 +8,7 @@ import SortableList from '../../SortableList';
 import { moveProjectCard } from '../../../actions';
 
 
-const ProjectsContainer = ({ cardsList, popupWindowIsOpen, onSortEnd }) => {
+const ProjectsContainer = ({ cardsList, popupWindowIsOpen, onSortEnd, dataIsLoading }) => {
   const projectCards = cardsList.map(card => {
     return <Card key={ card.id } config={ card } />
   });
@@ -22,6 +22,7 @@ const ProjectsContainer = ({ cardsList, popupWindowIsOpen, onSortEnd }) => {
   
   return (
     <div className={'bottom-big-wrapper card-container-wrapper'}>
+      { dataIsLoading ? <span>Loading</span> :
         <SortableList className={'card-container'}
                       itemClassName={'custom-card'}
                       axis={'xy'}
@@ -31,6 +32,8 @@ const ProjectsContainer = ({ cardsList, popupWindowIsOpen, onSortEnd }) => {
                       insertComponent={ <AddProjectCard/> }
                       useWindowAsScrollContainer={ true }
         />
+      }
+      
       { popupWindowIsOpen ? <PopupProjectWindow/> : null }
     </div>
   )
@@ -38,7 +41,8 @@ const ProjectsContainer = ({ cardsList, popupWindowIsOpen, onSortEnd }) => {
 
 const mapStateToProps = ({  cards, status }) => ({
   cardsList: cards.present.list,
-  popupWindowIsOpen: status.popupWindowIsOpen
+  popupWindowIsOpen: status.popupWindowIsOpen,
+  dataIsLoading: status.dataIsLoading
 });
 
 const mapDispatchToProps = dispatch => ({

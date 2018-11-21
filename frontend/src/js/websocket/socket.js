@@ -31,7 +31,10 @@ class Socket {
         case receiveTypes.CARDS_LIST:
         case receiveTypes.CHANGE_CARDS: {
           dispatch(getRemoteCards(message.cards));
+          break;
         }
+        default:
+          break;
       }
     }
   }

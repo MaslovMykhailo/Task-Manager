@@ -32,7 +32,17 @@ class OnlineUser extends  UserWithDB {
     switch (message.type) {
       case receiveTypes.CHANGE_CARDS: {
         this.cards = message.cards;
-        console.log(this.connections);
+        this.connections.forEach(ws => {
+          ws.send(messageCreators.sendChangedCards(this.cards), connectionId)
+        });
+        break;
+      }
+      case receiveTypes.REMOVE_CARD: {
+        this.cards = message.cards;
+        // Need put deleted project to trash
+        // let removedCardId = message.id;
+        // this.addToProjectTrash(removedCardId);
+        
         this.connections.forEach(ws => {
           ws.send(messageCreators.sendChangedCards(this.cards), connectionId)
         });

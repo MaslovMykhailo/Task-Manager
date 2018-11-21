@@ -15,7 +15,7 @@ class OnlineUser extends  UserWithDB {
   }
   
   addConnection(ws) {
-    this.connections.push(new Connection(ws, OnlineUser.createConnectionId, this));
+    this.connections.push(new Connection(ws, OnlineUser.createConnectionId(), this));
     this.connections[this.connections.length - 1]
       .sendOne(messageCreators.sendCardList(this.cards));
   }
@@ -32,6 +32,7 @@ class OnlineUser extends  UserWithDB {
     switch (message.type) {
       case receiveTypes.CHANGE_CARDS: {
         this.cards = message.cards;
+        console.log(this.connections);
         this.connections.forEach(ws => {
           ws.send(messageCreators.sendChangedCards(this.cards), connectionId)
         });

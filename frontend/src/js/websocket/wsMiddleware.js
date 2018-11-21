@@ -21,7 +21,23 @@ export default store => next => action => {
     case types.EDIT_PROJECT_CARD:
     case types.REDO_CARDS:
     case types.UNDO_CARDS: {
-      throttledChangeCardsSend(store.getState().cards.present.list);
+      const cards = store.getState().cards.present.list;
+      throttledChangeCardsSend(cards);
+      break;
+    }
+    case types.CREATE_PROJECT_CARD: {
+      const cards = store.getState().cards.present.list;
+      socket.send(messageCreators.changeCards(cards));
+      break;
+    }
+    case types.REMOVE_PROJECT_CARD: {
+      const id = action.id;
+      const cards = store.getState().cards.present.list;
+      socket.send(messageCreators.removeCard(id, cards));
+      break;
+    }
+    case types.SIGN_OUT_SUCCESS: {
+      socket.send(messageCreators.userLogout());
       break;
     }
     default:

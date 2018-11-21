@@ -1,3 +1,5 @@
+const Logable = require('../../logable/Logable');
+
 class Card {
   constructor(data) {
     this.id = data.id;
@@ -12,4 +14,4 @@ class Card {
   }
 }
 
-module.exports = Card;
+module.exports = Logable(Card);

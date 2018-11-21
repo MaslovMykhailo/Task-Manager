@@ -1,5 +1,5 @@
 const User = require('./User');
-const DB = require('./FakeDBInterface');
+const DB = require('../database/FakeDBInterface');
 
 class UserWithDB extends User {
   constructor(id, name) {

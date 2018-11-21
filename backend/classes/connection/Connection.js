@@ -1,3 +1,5 @@
+const Logable = require('../../logable/Logable');
+
 class Connection {
   constructor(ws, id, user) {
     this.ws = ws;
@@ -22,4 +24,4 @@ class Connection {
   }
 }
 
-module.exports = Connection;
+module.exports = Logable(Connection);

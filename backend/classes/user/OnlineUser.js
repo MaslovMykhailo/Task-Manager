@@ -1,7 +1,9 @@
 const UserWithDB = require('./UserWithDB');
-const Connection = require('./Connection');
-const receiveTypes = require('../constants/ReceiveMessageTypes');
-const messageCreators = require('../messageCreators/sendMessageCreators');
+const Connection = require('../connection/Connection');
+const receiveTypes = require('../../constants/ReceiveMessageTypes');
+const messageCreators = require('../../messageCreators/sendMessageCreators');
+const Logable = require('../../logable/Logable');
+
 
 class OnlineUser extends  UserWithDB {
   constructor(id, name, removeUserCallback) {
@@ -11,7 +13,7 @@ class OnlineUser extends  UserWithDB {
   }
   
   static createConnectionId() {
-    return Math.random() % 10 + Date.now() + Math.random() % 10;
+    return Math.random()*100 % 10 + Date.now() + Math.random()*100 % 10;
   }
   
   addConnection(ws) {
@@ -58,4 +60,4 @@ class OnlineUser extends  UserWithDB {
   }
 }
 
-module.exports = OnlineUser;
+module.exports = Logable(OnlineUser);

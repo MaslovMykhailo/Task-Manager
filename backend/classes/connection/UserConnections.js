@@ -1,5 +1,6 @@
-const verify = require('../verify/index');
-const OnlineUser = require('./OnlineUser');
+const verify = require('../../verify/index');
+const OnlineUser = require('../user/OnlineUser');
+const Logable = require('../../logable/Logable');
 
 class UserConnections {
   constructor() {
@@ -31,4 +32,4 @@ class UserConnections {
   }
 }
 
-module.exports = UserConnections;
+module.exports = Logable(UserConnections);

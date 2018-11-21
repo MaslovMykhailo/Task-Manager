@@ -1,3 +1,5 @@
+const Logable = require('../../logable/Logable');
+
 class FakeDBInterface {
   constructor() {
     this.users = [];
@@ -52,4 +54,6 @@ class FakeDBInterface {
   }
 }
 
-module.exports = new FakeDBInterface();
+const LogableDB = Logable(FakeDBInterface);
+
+module.exports = new LogableDB();

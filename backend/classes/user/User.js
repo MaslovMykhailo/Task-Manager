@@ -1,4 +1,4 @@
-const Card = require('./Card');
+const Card = require('../data/Card');
 
 class User {
   constructor(id, name) {

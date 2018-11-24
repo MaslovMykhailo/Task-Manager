@@ -1,11 +1,21 @@
 .login-button, .logout-button, .spinner {
     display: block;
-    margin: 20% auto auto;
+    margin: 20% auto 2% auto;
 }
 
 .google-icon {
     height: 100%;
     margin-bottom: 2%;
+}
+
+.login-button-wrapper {
+    text-align: center;
+}
+
+.no-connection {
+    font-family: 'Roboto', sans-serif;
+    color: #FF004B;
+    font-size: 24px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -18,5 +28,8 @@
         margin: 0 4%;
         font-size: 24px;
         height: 35px;
+    }
+    .no-connection {
+        font-size: 48px;
     }
 }

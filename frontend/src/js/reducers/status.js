@@ -16,7 +16,8 @@ export default (state = defaultState, action) => {
       return { ...state,  isSignedIn: true, isRequesting: false, dataIsLoading: true };
     }
     case types.SIGN_IN_FAILURE:
-    case types.SIGN_OUT_SUCCESS: {
+    case types.SIGN_OUT_SUCCESS:
+    case types.CLOSE_WS: {
       return { ...state, ...defaultState }
     }
     case types.OPEN_POPUP_WINDOW: {

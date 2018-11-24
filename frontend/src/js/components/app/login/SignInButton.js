@@ -7,14 +7,22 @@ import { CLIENT_ID } from '../../../constants/Client';
 
 
 const SignInButton = props => {
-  const { isSignedIn, isRequesting, onSuccess, onRequest, onFailure } = props;
-  if (isRequesting) {
+  const { isSignedIn, isRequesting, onSuccess, onRequest, onFailure, wsStatus } = props;
+  if (isRequesting || wsStatus === 'close') {
     return (
-    <button className={'mdl-button mdl-button--raised mdl-button--accent login-button'}
-            disabled={true}>
-      <img src={googlePlusIcon} className={'google-icon'}/>
-      <span>Sign in with Google</span>
-    </button>
+      <div className={'login-button-wrapper'}>
+        <button className={'mdl-button mdl-button--raised mdl-button--accent login-button'}
+                disabled={true}>
+          <img src={googlePlusIcon} className={'google-icon'}/>
+          <span>Sign in with Google</span>
+        </button>
+        {
+          wsStatus === 'close' ?
+          <span className={'no-connection'}>
+            Sorry! No connection with server!
+          </span> : null
+        }
+      </div>
     )
   } else {
     return (

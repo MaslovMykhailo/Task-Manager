@@ -6,7 +6,7 @@ export const userLogin = token => ({
 });
 
 export const userLogout = () => ({
-  type: sendTypes.USER_LOGIN
+  type: sendTypes.USER_LOGOUT
 });
 
 export const changeCards = cards => ({

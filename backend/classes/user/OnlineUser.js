@@ -33,20 +33,20 @@ class OnlineUser extends  UserWithDB {
   onMessage(message, connectionId) {
     switch (message.type) {
       case receiveTypes.CHANGE_CARDS: {
-        this.cards = message.cards;
+        this.setCards = message.cards;
         this.connections.forEach(ws => {
-          ws.send(messageCreators.sendChangedCards(this.cards), connectionId)
+          ws.send(messageCreators.sendChangedCards(this.getCards), connectionId)
         });
         break;
       }
       case receiveTypes.REMOVE_CARD: {
-        this.cards = message.cards;
+        this.setCards = message.cards;
         // Need put deleted project to trash
         // let removedCardId = message.id;
         // this.addToProjectTrash(removedCardId);
         
         this.connections.forEach(ws => {
-          ws.send(messageCreators.sendChangedCards(this.cards), connectionId)
+          ws.send(messageCreators.sendChangedCards(this.getCards), connectionId)
         });
         break;
       }
@@ -54,8 +54,10 @@ class OnlineUser extends  UserWithDB {
         this.connectionDidClose(connectionId);
         break;
       }
-      default:
+      default: {
+        console.log(message);
         break;
+      }
     }
   }
 }

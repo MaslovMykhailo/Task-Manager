@@ -1,4 +1,3 @@
-const Card = require('../data/Card');
 
 class User {
   constructor(id, name) {
@@ -9,7 +8,7 @@ class User {
   }
   
   set setCards(cards) {
-    this.cards = cards.map(data => new Card(data));
+    this.cards = cards;
   }
   
   get getCards() {

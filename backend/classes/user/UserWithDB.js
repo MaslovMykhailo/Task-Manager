@@ -6,11 +6,11 @@ class UserWithDB extends User {
     super(id, name);
     
     this.DB = DB;
-    this.cards = this.DB.getUserCards({ id: this.id, name: this.name });
+    this.setCards = this.DB.getUserCards({ id: this.id, name: this.name });
   }
   
   saveCardsToDB() {
-    this.DB.setUserCards(this.id, this.cards);
+    this.DB.setUserCards(this.id, this.getCards);
   }
 }
 

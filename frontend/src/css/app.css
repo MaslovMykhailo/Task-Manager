@@ -17,3 +17,4 @@ body {
 @import "project-card.css";
 @import "sign-(in-out)-button.css";
 @import "undo-redo-buttons.css";
+@import "preloader.css";

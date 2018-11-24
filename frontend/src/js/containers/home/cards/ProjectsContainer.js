@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import Preloader from '../../../components/app/Preloader';
 import Card from './Card';
 import AddProjectCard from './AddProjectCard';
 import PopupProjectWindow from './PopupProjectWindow';
@@ -20,9 +21,9 @@ const ProjectsContainer = ({ cardsList, popupWindowIsOpen, onSortEnd, dataIsLoad
     }
   };
   
-  return (
-    <div className={'bottom-big-wrapper card-container-wrapper'}>
-      { dataIsLoading ? <span>Loading</span> :
+  
+  return dataIsLoading ?  <Preloader wrapperClass={'bottom-big-wrapper'}/> :
+      <div className={'bottom-big-wrapper card-container-wrapper'}>
         <SortableList className={'card-container'}
                       itemClassName={'custom-card'}
                       axis={'xy'}
@@ -32,11 +33,8 @@ const ProjectsContainer = ({ cardsList, popupWindowIsOpen, onSortEnd, dataIsLoad
                       insertComponent={ <AddProjectCard/> }
                       useWindowAsScrollContainer={ true }
         />
-      }
-      
-      { popupWindowIsOpen ? <PopupProjectWindow/> : null }
-    </div>
-  )
+        { popupWindowIsOpen ? <PopupProjectWindow/> : null }
+      </div>
 };
 
 const mapStateToProps = ({  cards, status }) => ({

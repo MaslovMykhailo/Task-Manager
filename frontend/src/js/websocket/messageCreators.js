@@ -13,9 +13,3 @@ export const changeCards = cards => ({
   type: sendTypes.CHANGE_CARDS,
   cards: cards
 });
-
-export const removeCard = (id, cards) => ({
-  type: sendTypes.REMOVE_CARD,
-  id: id,
-  cards: cards
-});

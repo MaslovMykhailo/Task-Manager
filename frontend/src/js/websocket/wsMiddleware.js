@@ -25,15 +25,10 @@ export default store => next => action => {
       throttledChangeCardsSend(cards);
       break;
     }
-    case types.CREATE_PROJECT_CARD: {
+    case types.CREATE_PROJECT_CARD:
+    case types.REMOVE_PROJECT_CARD: {
       const cards = store.getState().cards.present.list;
       socket.send(messageCreators.changeCards(cards));
-      break;
-    }
-    case types.REMOVE_PROJECT_CARD: {
-      const id = action.id;
-      const cards = store.getState().cards.present.list;
-      socket.send(messageCreators.removeCard(id, cards));
       break;
     }
     case types.SIGN_OUT_SUCCESS: {

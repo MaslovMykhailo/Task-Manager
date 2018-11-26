@@ -4,7 +4,7 @@ class User {
     this.id = id;
     this.name = name;
     this.cards = [];
-    this.currentProject = null;
+    this.currentProjects = [];
   }
   
   set setCards(cards) {
@@ -14,14 +14,14 @@ class User {
   get getCards() {
     return this.cards;
   }
-  
-  set setCurrentProject(project) {
-    this.currentProject = project;
-  }
-  
-  get getCurrentProject() {
-    return this.currentProject;
-  }
+  //
+  // addCurrentProject(project) {
+  //   this.currentProjects.push(project);
+  // }
+  //
+  // getCurrentProjectById(id) {
+  //   return this.currentProjects.find(project => project.id === id);
+  // }
 }
 
 module.exports = User;

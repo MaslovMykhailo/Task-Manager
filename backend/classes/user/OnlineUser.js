@@ -39,17 +39,6 @@ class OnlineUser extends  UserWithDB {
         });
         break;
       }
-      case receiveTypes.REMOVE_CARD: {
-        this.setCards = message.cards;
-        // Need put deleted project to trash
-        // let removedCardId = message.id;
-        // this.addToProjectTrash(removedCardId);
-        
-        this.connections.forEach(ws => {
-          ws.send(messageCreators.sendChangedCards(this.getCards), connectionId)
-        });
-        break;
-      }
       case receiveTypes.USER_LOGOUT: {
         this.connectionDidClose(connectionId);
         break;

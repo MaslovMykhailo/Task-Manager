@@ -25,26 +25,59 @@ class OnlineUser extends  UserWithDB {
   connectionDidClose(connectionId) {
     let index = this.connections.findIndex(ws => ws.id === connectionId);
     this.connections.splice(index, 1);
+    
     this.saveCardsToDB();
+    this.saveProjectsListToDB();
     
     if (!this.connections.length) this.removeCallback(connectionId);
+  }
+  
+  sendAllConnections(message, connectionId) {
+    this.connections.forEach(ws => {
+      ws.send(message, connectionId)
+    });
   }
   
   onMessage(message, connectionId) {
     switch (message.type) {
       case receiveTypes.CHANGE_CARDS: {
         this.setCards = message.cards;
-        this.connections.forEach(ws => {
-          ws.send(messageCreators.sendChangedCards(this.getCards), connectionId)
-        });
+        this.sendAllConnections(
+          messageCreators.sendChangedCards(this.getCards, connectionId)
+        );
         break;
       }
       case receiveTypes.USER_LOGOUT: {
         this.connectionDidClose(connectionId);
         break;
       }
+      case receiveTypes.OPEN_PROJECT: {
+        const projectId = message.projectId;
+        
+        let openedProject = this.getCurrentProjectById(projectId);
+        if (!openedProject) {
+          // need to get project form DB
+          openedProject = this.getProjectFromDB(projectId);
+          this.addCurrentProject(openedProject);
+        }
+        this.connections.find(c => c.id === connectionId).sendOne(
+          messageCreators.sendProjectData(openedProject)
+        );
+        break;
+      }
+      case receiveTypes.CHANGE_PROJECT: {
+        const changedProject = this.changeCurrentProject(message.project.id);
+        this.sendAllConnections(
+          messageCreators.sendChangedProject(changedProject), connectionId
+        );
+        break;
+      }
+      case receiveTypes.CLOSE_PROJECT: {
+        this.saveProjectToDB(message.projectId);
+        break;
+      }
       default: {
-        console.log(message);
+        console.log('Unknown message: ', message);
         break;
       }
     }

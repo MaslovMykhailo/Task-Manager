@@ -1,5 +1,9 @@
 const Logable = require('../../logable/Logable');
 
+const emptyProject = {
+  columns: []
+};
+
 class FakeDBInterface {
   constructor() {
     this.users = [];
@@ -14,10 +18,9 @@ class FakeDBInterface {
     })
   }
   
-  addUserProject(userId) {
+  addUserProject(userId, project) {
     const user = this.users.find(user => userId === user.id);
-    // push empty project
-    user.projects.push({});
+    user.projects.push(project);
   }
   
   getUserCards(userData) {
@@ -36,9 +39,9 @@ class FakeDBInterface {
     if (project) {
       return project;
     } else {
-      this.addUserProject(userId);
-      // return empty project
-      return {};
+      const newProject = Object.assign({ projectId }, emptyProject);
+      this.addUserProject(userId, newProject);
+      return newProject;
     }
   }
   
@@ -52,6 +55,15 @@ class FakeDBInterface {
     const projectIndex = this.users[userIndex].projects.findIndex(p => projectData.id === p.id);
     this.users[userIndex].projects[projectIndex] = projectData;
   }
+  
+  setUserProjectsListById(userId, projectDataList) {
+    const userIndex = this.users.findIndex(user => userId = user.id);
+    projectDataList.forEach(project => {
+      const projectIndex = this.users[userIndex].projects.findIndex(p => project.id === p.id);
+      this.users[userIndex].projects[projectIndex] = project;
+    });
+  }
+  
 }
 
 const LogableDB = Logable(FakeDBInterface);

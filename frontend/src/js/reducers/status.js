@@ -18,7 +18,7 @@ export default (state = defaultState, action) => {
     case types.SIGN_IN_FAILURE:
     case types.SIGN_OUT_SUCCESS:
     case types.CLOSE_WS: {
-      return { ...state, ...defaultState }
+      return  defaultState;
     }
     case types.OPEN_POPUP_WINDOW: {
       return { ...state, popupWindowIsOpen: true }

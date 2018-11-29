@@ -60,6 +60,10 @@ const cards = (state = defaultState, action) => {
     case types.CLOSE_POPUP_WINDOW: {
       return { ...state, popupWindow: { id: undefined, type: undefined }};
     }
+    case types.SIGN_OUT_SUCCESS:
+    case types.CLOSE_WS: {
+      return defaultState;
+    }
     default:
       return state;
   }

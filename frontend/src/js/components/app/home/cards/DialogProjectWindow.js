@@ -9,15 +9,9 @@ class DialogProjectWindow extends Component {
     
     this.state = {
       projectNameValue: props.name || '',
-      projectDescriptionValue: props.description || ' ',
+      projectDescriptionValue: props.description || '',
       cardColor: props.cardColor || 'teal',
-      colorsDiv: Object.keys(Colors).map(color => (
-        <div key={color}
-             style={{backgroundColor: Colors[color].RGB}}
-             className={color === (props.cardColor || 'teal') ? 'active': ''}
-             onClick={this.handleChangeCardColor(color)}
-        />
-      )),
+
       validClassNameForName: props.name ? ' incorrect_hidden' : ' incorrect_visible',
     };
   
@@ -27,7 +21,7 @@ class DialogProjectWindow extends Component {
   }
   
   validateInput(input) {
-    return input.length > 0;
+    return input.replace(/\s+/, "").replace(/\s{2,}/g,' ').length > 0;
   }
   
   handleChangeName(event) {
@@ -42,7 +36,7 @@ class DialogProjectWindow extends Component {
   
   handleChangeDescription(event) {
     const value = event.target.value;
-  
+
     this.setState({
       projectDescriptionValue: value,
     });
@@ -51,23 +45,16 @@ class DialogProjectWindow extends Component {
   handleChangeCardColor(changedColor) {
     return () => {
       this.setState({
-        cardColor: changedColor,
-        colorsDiv: Object.keys(Colors).map(color => (
-          <div key={ color }
-               style={ {backgroundColor: Colors[color].RGB} }
-               className={ color === changedColor ? 'active': '' }
-               onClick={ this.handleChangeCardColor(color) }
-          />
-        ))
+        cardColor: changedColor
       })
     }
   }
   
   render() {
-    const { state, props, handleChangeName, handleChangeDescription, validateInput } = this;
+    const { state, props, handleChangeName, handleChangeDescription, validateInput, handleChangeCardColor } = this;
     const {
       projectNameValue, projectDescriptionValue,
-      colorsDiv, cardColor, validClassNameForName
+      cardColor, validClassNameForName
     } = state;
     const { createProject, editProject, closeWindow, type, id } = props;
   
@@ -92,6 +79,14 @@ class DialogProjectWindow extends Component {
         onClickHandler();
       }
     };
+
+    const colorsDiv = Object.keys(Colors).map(color => (
+      <div key={color}
+           style={{backgroundColor: Colors[color].RGB}}
+           className={color === (cardColor || 'teal') ? 'active': ''}
+           onClick={handleChangeCardColor(color)}
+      />
+    ));
     
     return (
       <div className={'popup-window mdl-card mdl-shadow--2dp'}>

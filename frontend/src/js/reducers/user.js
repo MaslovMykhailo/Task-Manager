@@ -2,7 +2,6 @@ import * as types from '../constants/ActionTypes';
 
 const defaultState = {
   name: undefined,
-  email: undefined,
   imageUrl: undefined
 };
 
@@ -11,6 +10,10 @@ export default (state = defaultState, action) => {
     case types.SIGN_IN_SUCCESS: {
       const { name, imageUrl } = action.response.profileObj;
       return { ...state, name, imageUrl };
+    }
+    case types.SIGN_OUT_SUCCESS:
+    case  types.CLOSE_WS: {
+      return defaultState;
     }
     default:
       return state;

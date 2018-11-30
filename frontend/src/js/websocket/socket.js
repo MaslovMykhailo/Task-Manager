@@ -1,4 +1,4 @@
-import { openWs, closeWs, getRemoteCards } from '../actions';
+import {openWs, closeWs, getRemoteCards, getRemoteProjectData, getCurrentProjectData} from '../actions';
 import { WS_SERVER } from '../constants/Client';
 import * as receiveTypes from '../constants/ReceiveMessageTypes';
 
@@ -31,6 +31,14 @@ class Socket {
         case receiveTypes.CARDS_LIST:
         case receiveTypes.CHANGE_CARDS: {
           dispatch(getRemoteCards(message.cards));
+          break;
+        }
+        case receiveTypes.PROJECT_DATA: {
+          dispatch(getCurrentProjectData(message.project));
+          break;
+        }
+        case receiveTypes.CHANGE_PROJECT: {
+          dispatch(getRemoteProjectData(message.project));
           break;
         }
         default:

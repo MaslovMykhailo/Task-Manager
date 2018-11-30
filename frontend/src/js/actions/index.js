@@ -29,7 +29,7 @@ export const moveProjectCard = (oldIndex, newIndex) => ({
 });
 export const undoCards = () => ({ type: types.UNDO_CARDS});
 export const redoCards = () => ({ type: types.REDO_CARDS});
-export const getRemoteCards = cards => ({type: types.GET_ROMOTE_CARDS, cards});
+export const getRemoteCards = cards => ({type: types.GET_REMOTE_CARDS, cards});
 
 
 export const openWs = () => ({ type: types.OPEN_WS });

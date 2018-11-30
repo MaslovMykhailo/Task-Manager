@@ -26,7 +26,7 @@ export default (state = defaultState, action) => {
     case types.CLOSE_POPUP_WINDOW: {
       return { ...state, popupWindowIsOpen: false }
     }
-    case types.GET_ROMOTE_CARDS: {
+    case types.GET_REMOTE_CARDS: {
       return { ...state, dataIsLoading: false }
     }
     default:

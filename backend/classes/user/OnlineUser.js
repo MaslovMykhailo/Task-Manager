@@ -13,13 +13,19 @@ class OnlineUser extends  UserWithDB {
   }
   
   static createConnectionId() {
-    return Math.random()*100 % 10 + Date.now() + Math.random()*100 % 10;
+    return Math.round(Math.random()*100 % 10).toString() +
+      Date.now() +
+      Math.round(Math.random()*10).toString();
   }
   
   addConnection(ws) {
-    this.connections.push(new Connection(ws, OnlineUser.createConnectionId(), this));
-    this.connections[this.connections.length - 1]
-      .sendOne(messageCreators.sendCardList(this.cards));
+    const addedConnection = new Connection(ws,
+      OnlineUser.createConnectionId(),
+      this.onMessage.bind(this),
+      this.connectionDidClose.bind(this)
+    );
+    this.connections.push(addedConnection);
+    addedConnection.send(messageCreators.sendCardList(this.cards));
   }
   
   connectionDidClose(connectionId) {
@@ -32,9 +38,11 @@ class OnlineUser extends  UserWithDB {
     if (!this.connections.length) this.removeCallback(connectionId);
   }
   
-  sendAllConnections(message, connectionId) {
+  sendAllConnectionsWithoutOne(message, connectionId) {
     this.connections.forEach(ws => {
-      ws.send(message, connectionId)
+      if (ws.id !== connectionId) {
+        ws.send(message, connectionId)
+      }
     });
   }
   
@@ -42,8 +50,8 @@ class OnlineUser extends  UserWithDB {
     switch (message.type) {
       case receiveTypes.CHANGE_CARDS: {
         this.setCards = message.cards;
-        this.sendAllConnections(
-          messageCreators.sendChangedCards(this.getCards, connectionId)
+        this.sendAllConnectionsWithoutOne(
+          messageCreators.sendChangedCards(this.getCards), connectionId
         );
         break;
       }
@@ -60,14 +68,14 @@ class OnlineUser extends  UserWithDB {
           openedProject = this.getProjectFromDB(projectId);
           this.addCurrentProject(openedProject);
         }
-        this.connections.find(c => c.id === connectionId).sendOne(
+        this.connections.find(c => c.id === connectionId).send(
           messageCreators.sendProjectData(openedProject)
         );
         break;
       }
       case receiveTypes.CHANGE_PROJECT: {
         const changedProject = this.changeCurrentProject(message.project.id);
-        this.sendAllConnections(
+        this.sendAllConnectionsWithoutOne(
           messageCreators.sendChangedProject(changedProject), connectionId
         );
         break;

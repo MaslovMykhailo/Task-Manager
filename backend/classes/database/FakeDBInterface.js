@@ -1,7 +1,23 @@
 const Logable = require('../../logable/Logable');
 
-const emptyProject = {
-  columns: []
+const exampleProject = {
+  columns: [
+    {
+      name: 'Need to do',
+      tasks: [],
+      color: 'red'
+    },
+    {
+      name: 'In process',
+      tasks: [],
+      color: 'yellow'
+    },
+    {
+      name: 'Completed',
+      tasks: [],
+      color: 'green'
+    }
+  ]
 };
 
 class FakeDBInterface {
@@ -39,7 +55,7 @@ class FakeDBInterface {
     if (project) {
       return project;
     } else {
-      const newProject = Object.assign({ projectId }, emptyProject);
+      const newProject = Object.assign({ projectId }, exampleProject);
       this.addUserProject(userId, newProject);
       return newProject;
     }

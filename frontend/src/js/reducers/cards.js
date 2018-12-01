@@ -13,9 +13,9 @@ const defaultState = {
 };
 
 const createId = (name) => {
-  return Math.round(Math.random() * 100) + '-' +
+  return Math.round(Math.random() * 1000) + '-' +
     name.toLowerCase().split(' ').join('-') +
-    '-' + new Date().getDate();
+    '-' + new Date().getDate() + '-' + new Date().getSeconds();
 };
 
 const cards = (state = defaultState, action) => {

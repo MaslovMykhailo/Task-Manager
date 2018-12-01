@@ -38,6 +38,10 @@ export default store => next => action => {
       socket.send(messageCreators.userLogout());
       break;
     }
+    case types.OPEN_PROJECT: {
+      socket.send(messageCreators.openProject(action.projectId));
+      break;
+    }
     default:
       break;
   }

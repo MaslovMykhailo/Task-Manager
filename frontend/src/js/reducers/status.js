@@ -26,8 +26,12 @@ export default (state = defaultState, action) => {
     case types.CLOSE_POPUP_WINDOW: {
       return { ...state, popupWindowIsOpen: false }
     }
-    case types.GET_REMOTE_CARDS: {
+    case types.GET_REMOTE_CARDS:
+    case types.GET_CURRENT_PROJECT_DATA: {
       return { ...state, dataIsLoading: false }
+    }
+    case types.OPEN_PROJECT: {
+      return { ...state, dataIsLoading: true }
     }
     default:
       return state;

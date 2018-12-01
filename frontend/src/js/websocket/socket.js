@@ -42,6 +42,7 @@ class Socket {
           break;
         }
         default:
+          console.log('Unknown message', message);
           break;
       }
     }

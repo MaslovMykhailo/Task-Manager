@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Content from '../Content';
-import UserInfo from '../../../containers/home/UserInfo';
+import UserInfo from '../../../containers/user/UserInfo';
 import ActionBar from './actionBar/ActionBar';
 import ProjectsContainer from '../../../containers/home/cards/ProjectsContainer';
 

@@ -2,7 +2,7 @@ import * as sendTypes from '../constants/SendMessageTypes';
 
 export const userLogin = token => ({
   type: sendTypes.USER_LOGIN,
-  token: token
+  token
 });
 
 export const userLogout = () => ({
@@ -11,5 +11,15 @@ export const userLogout = () => ({
 
 export const changeCards = cards => ({
   type: sendTypes.CHANGE_CARDS,
-  cards: cards
+  cards
+});
+
+export const openProject = projectId => ({
+  type: sendTypes.OPEN_PROJECT,
+  projectId
+});
+
+export const closeProject = projectId => ({
+  type: sendTypes.CLOSE_PROJECT,
+  projectId
 });

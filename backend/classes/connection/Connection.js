@@ -4,18 +4,20 @@ class Connection {
   constructor(ws, id, onMessage, closeConnectionCallback) {
     this.ws = ws;
     this.id = id;
+    this.messageListener = message => { onMessage(JSON.parse(message), id) };
+    this.closeListener = () => { closeConnectionCallback(id) };
 
-    this.ws.on('message', message => {
-      onMessage(JSON.parse(message), id);
-    });
-    
-    this.ws.on('close', () => {
-      closeConnectionCallback(id);
-    });
+    ws.on('message', this.messageListener);
+    ws.on('close', this.closeListener);
   }
   
   send(message) {
     this.ws.send(message);
+  }
+
+  clearListeners() {
+    this.ws.removeListener('message', this.messageListener);
+    this.ws.removeListener('close', this.closeListener);
   }
 }
 

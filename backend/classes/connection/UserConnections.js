@@ -22,13 +22,14 @@ class UserConnections {
       curUser = new OnlineUser(id, name, this.removeOnlineUser.bind(this));
       this.onlineUsers.push(curUser);
     }
-  
+    console.log('Add connection!!!');
     curUser.addConnection(ws);
   }
   
   removeOnlineUser(id) {
     let index = this.onlineUsers.findIndex(user => user.id === id);
     this.onlineUsers.splice(index, 1);
+    console.log('User was removed!!!');
   }
 }
 

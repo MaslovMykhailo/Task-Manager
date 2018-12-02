@@ -25,17 +25,19 @@ class OnlineUser extends  UserWithDB {
       this.connectionDidClose.bind(this)
     );
     this.connections.push(addedConnection);
-    addedConnection.send(messageCreators.sendCardList(this.cards));
+    addedConnection.send(messageCreators.sendCardList(this.getCards));
   }
   
   connectionDidClose(connectionId) {
     let index = this.connections.findIndex(ws => ws.id === connectionId);
+    this.connections[index].clearListeners();
     this.connections.splice(index, 1);
-    
+
+    console.log('Connection was closed!!!');
     this.saveCardsToDB();
     this.saveProjectsListToDB();
     
-    if (!this.connections.length) this.removeCallback(connectionId);
+    if (!this.connections.length) this.removeCallback(this.id);
   }
   
   sendAllConnectionsWithoutOne(message, connectionId) {
@@ -74,6 +76,12 @@ class OnlineUser extends  UserWithDB {
         break;
       }
       case receiveTypes.CHANGE_PROJECT: {
+        const projectId = message.project.id;
+
+        if (!this.getCurrentProjectById(projectId)) {
+          this.addCurrentProject(this.getProjectFromDB(projectId));
+        }
+
         const changedProject = this.changeCurrentProject(message.project.id);
         this.sendAllConnectionsWithoutOne(
           messageCreators.sendChangedProject(changedProject), connectionId

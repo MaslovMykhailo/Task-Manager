@@ -55,7 +55,7 @@ class FakeDBInterface {
     if (project) {
       return project;
     } else {
-      const newProject = Object.assign({ projectId }, exampleProject);
+      const newProject = Object.assign({ id: projectId }, exampleProject);
       this.addUserProject(userId, newProject);
       return newProject;
     }
@@ -79,7 +79,6 @@ class FakeDBInterface {
       this.users[userIndex].projects[projectIndex] = project;
     });
   }
-  
 }
 
 const LogableDB = Logable(FakeDBInterface);

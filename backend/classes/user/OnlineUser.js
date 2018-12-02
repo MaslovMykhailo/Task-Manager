@@ -33,7 +33,6 @@ class OnlineUser extends  UserWithDB {
     this.connections[index].clearListeners();
     this.connections.splice(index, 1);
 
-    console.log('Connection was closed!!!');
     this.saveCardsToDB();
     this.saveProjectsListToDB();
     
@@ -76,7 +75,7 @@ class OnlineUser extends  UserWithDB {
         break;
       }
       case receiveTypes.CHANGE_PROJECT: {
-        const projectId = message.project.id;
+        const { projectId } = message;
 
         if (!this.getCurrentProjectById(projectId)) {
           this.addCurrentProject(this.getProjectFromDB(projectId));
@@ -89,7 +88,8 @@ class OnlineUser extends  UserWithDB {
         break;
       }
       case receiveTypes.CLOSE_PROJECT: {
-        this.saveProjectToDB(message.projectId);
+        const { projectId } = message;
+        if (this.getCurrentProjectById(projectId)) this.saveProjectToDB(projectId);
         break;
       }
       default: {

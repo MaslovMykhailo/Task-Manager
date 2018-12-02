@@ -17,6 +17,8 @@ class UserWithDB extends User {
   }
   
   saveProjectToDB(projectId) {
+    console.log(projectId);
+    console.log(this.currentProjects);
     DB.setUserProjectById(
       this.id,
       this.currentProjects.find(p => p.id === projectId)

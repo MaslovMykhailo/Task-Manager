@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Preloader from '../../../components/app/Preloader';
+import Preloader from '../../../components/app/common/Preloader';
 import Card from './Card';
 import AddProjectCard from './AddProjectCard';
 import PopupProjectWindow from './PopupProjectWindow';

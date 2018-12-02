@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Content from '../Content';
+import Content from '../common/Content';
 import UserInfo from  '../../../containers/user/UserInfo';
 import ProjectActionBar from '../actionBar/ProjectActionBar';
 import CurrentProject from '../../../containers/project/CurrentProject';

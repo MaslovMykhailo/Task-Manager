@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Content from '../Content';
+import Content from '../common/Content';
 import Logo from './Logo';
 import SignIn from '../../../containers/login/SignIn';
 import CreatorChip from './CreatorChip';

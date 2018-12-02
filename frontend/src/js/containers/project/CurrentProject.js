@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { openProject } from '../../actions';
-import Preloader from "../../components/app/Preloader";
+import Preloader from "../../components/app/common/Preloader";
 
 
 class CurrentProject extends Component {

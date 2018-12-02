@@ -20,18 +20,11 @@
 .popup-window > .mdl-card__supporting-text > .mdl-textfield {
     padding: 7px 0;
     color: black;
+    width: 450px;
 }
 
 .popup-window > .mdl-card__supporting-text > .mdl-textfield > input:focus {
     outline-color: #FF004B;
-}
-
-.popup-window > .mdl-card__supporting-text > .mdl-textfield > #project-name {
-    width: 250px;
-}
-
-.popup-window > .mdl-card__supporting-text > .mdl-textfield > #project-description {
-    width: 400px;
 }
 
 .popup-window > #save-button {
@@ -43,7 +36,7 @@
 .popup-window > .close {
     position: absolute;
     right: 10px;
-    top: 20px;
+    top: 10px;
     color: #FF004B;
 }
 

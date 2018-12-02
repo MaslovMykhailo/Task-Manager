@@ -12,7 +12,6 @@ const emptyProject = {
 const currentProject =  (state = emptyProject, action) => {
   switch (action.type) {
     case types.GET_CURRENT_PROJECT_DATA: {
-      console.log(action.project);
       return action.project;
     }
     case types.GET_REMOTE_PROJECT_DATA: {

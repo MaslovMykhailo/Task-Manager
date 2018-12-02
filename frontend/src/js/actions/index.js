@@ -32,8 +32,8 @@ export const redoCards = () => ({ type: types.REDO_CARDS});
 export const getRemoteCards = cards => ({type: types.GET_REMOTE_CARDS, cards});
 
 
-export const openProject = projectId => ({ type: types.OPEN_PROJECT, projectName: projectId });
-export const closeProject = projectId => ({ type: types.CLOSE_PROJECT, projectName: projectId });
+export const openProject = projectId => ({ type: types.OPEN_PROJECT, projectId });
+export const closeProject = projectId => ({ type: types.CLOSE_PROJECT, projectId });
 export const getCurrentProjectData = project => ({ type: types.GET_CURRENT_PROJECT_DATA, project });
 export const getRemoteProjectData = project => ({ type: types.GET_REMOTE_PROJECT_DATA, project });
 

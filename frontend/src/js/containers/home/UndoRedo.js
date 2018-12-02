@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { redoCards, undoCards } from '../../actions';
 
 
-import UndoRedoButtons from '../../components/app/home/actionBar/UndoRedoButtons';
+import UndoRedoButtons from '../../components/app/actionBar/UndoRedoButtons';
 
 
 const mapStateToProps = ({ cards }) => ({

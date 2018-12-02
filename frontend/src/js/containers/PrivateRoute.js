@@ -3,7 +3,8 @@ import { Route, Redirect } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 
 import { connect } from 'react-redux';
-import {signInFailure, signInSuccess} from '../actions';
+import { signInFailure, signInSuccess } from '../actions';
+import { CLIENT_ID } from "../constants/Client";
 
 
 const PrivateRoute = ({ component: Component, isSignedIn, onSuccess, onFailure, ...rest }) => (
@@ -13,9 +14,9 @@ const PrivateRoute = ({ component: Component, isSignedIn, onSuccess, onFailure, 
       isSignedIn ? (
         <div>
           <Component {...props} />
-          {/*{Shadow login for normal work of logout button}*/}
+          {/*{Shadow login for normal work of logout button after page restore}*/}
           <GoogleLogin
-            clientId={'172468454646-3fciv2jsjjsq5vgq3qethn0rebm1pu61.apps.googleusercontent.com'}
+            clientId={CLIENT_ID}
             onSuccess={onSuccess} onFailure={onFailure} isSignedIn={true} style={{display: 'none'}}
           />
         </div>

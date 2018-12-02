@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PrivateRoute from '../../containers/PrivateRoute';
 import Login from './login/Login';
 import Home from './home/Home';
-import Project from './project/Project';
+import Project from '../../containers/project/Project';
 
 
 const App = () => {

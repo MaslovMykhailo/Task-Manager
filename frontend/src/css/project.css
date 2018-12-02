@@ -1,0 +1,53 @@
+.project-header {
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+}
+
+.project-header__name {
+    flex: auto;
+    background: rgba(0, 128, 128, .6);
+    display: flex;
+}
+
+.project-name {
+    align-self: center;
+    color: white;
+    font-weight: bold;
+    font-size: 36px;
+    margin-left: 3%;
+}
+
+.project-header__user-info {
+    background: teal;
+    height: 80px;
+    width: 80px;
+}
+
+.project-header__user-info > .user-photo {
+    overflow: hidden;
+    width: 75%;
+    border-radius: 50%;
+    margin: 12% auto;
+}
+
+.project-header__user-info > .user-photo > img {
+    width: 100%;
+}
+
+.project-header__user_info > span.user-name {
+    display: none;
+}
+
+.project-content {
+    display: flex;
+    flex: auto;
+}
+
+.current-project-content {
+    flex: auto;
+}
+
+.project-content__action-bar {
+    width: 80px;
+    background: rgba(0, 128, 128, .4);
+}

@@ -23,7 +23,10 @@ const PrivateRoute = ({ component: Component, isSignedIn, onSuccess, onFailure, 
       ) : (
         <Redirect
           push
-          to={'/login'}
+          to={{
+            pathname: '/login',
+            state: props.location
+          }}
         />
       )
     }

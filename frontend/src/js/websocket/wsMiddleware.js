@@ -42,6 +42,10 @@ export default store => next => action => {
       socket.send(messageCreators.openProject(action.projectId));
       break;
     }
+    case types.CLOSE_PROJECT: {
+      socketSendAsync(messageCreators.closeProject(action.projectId));
+      break;
+    }
     default:
       break;
   }

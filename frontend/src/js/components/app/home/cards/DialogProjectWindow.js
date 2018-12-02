@@ -134,7 +134,7 @@ class DialogProjectWindow extends Component {
         <button className="close mdl-button mdl-button--icon"
                 onClick={ closeWindow }
         >
-          <i className="material-icons">close</i>
+          <i className="material-icons">cancel</i>
         </button>
         
         <button className="mdl-button mdl-button--raised mdl-button--accent"

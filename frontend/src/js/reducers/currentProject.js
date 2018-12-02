@@ -21,6 +21,9 @@ const currentProject =  (state = emptyProject, action) => {
         return state;
       }
     }
+    case types.CLOSE_PROJECT: {
+      return emptyProject;
+    }
     default:
       return state;
   }

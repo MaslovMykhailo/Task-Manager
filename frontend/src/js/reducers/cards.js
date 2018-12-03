@@ -2,7 +2,7 @@ import undoable, { includeAction } from 'redux-undo';
 import { arrayMove } from 'react-sortable-hoc';
 
 import * as types from '../constants/ActionTypes';
-
+import createId from '../createId';
 
 const defaultState = {
   list: [],
@@ -10,12 +10,6 @@ const defaultState = {
     id: undefined,
     type: undefined
   }
-};
-
-const createId = (name) => {
-  return Math.round(Math.random() * 1000) + '-' +
-    name.toLowerCase().split(' ').join('-') +
-    '-' + new Date().getDate() + '-' + new Date().getSeconds();
 };
 
 const cards = (state = defaultState, action) => {

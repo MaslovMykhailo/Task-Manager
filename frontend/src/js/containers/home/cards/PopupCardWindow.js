@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { createProjectCard, editProjectCard, closePopupWindow } from '../../../actions/index';
-import DialogProjectWindow from '../../../components/app/common/DialogProjectWindow';
+import DialogWindow from '../../../components/app/common/DialogWindow';
 
 
 const mapStateToProps = state => {
@@ -24,8 +24,10 @@ const mapStateToProps = state => {
             serializeTo: 'description'
           },
         ],
-        saveButtonText: 'edit',
-        saveHandlerName: 'editProject',
+        saveButton: {
+          text: 'edit',
+          handler: 'editProject'
+        },
         colors: {
           title: 'Card color',
           checkedColor: cardColor,
@@ -54,8 +56,10 @@ const mapStateToProps = state => {
             serializeTo: 'description'
           },
         ],
-        saveButtonText: 'create',
-        saveHandlerName: 'createProject',
+        saveButton: {
+          text: 'create',
+          handler: 'createProject'
+        },
         colors: {
           title: 'Card color',
           serializeTo: 'cardColor'
@@ -75,4 +79,4 @@ const mapDispatchToProps = dispatch => ({
   closeHandler: () => dispatch(closePopupWindow())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(DialogProjectWindow);
+export default connect(mapStateToProps, mapDispatchToProps)(DialogWindow);

@@ -42,7 +42,7 @@
 
 .popup-window > .color-container {
     display: flex;
-    padding: 10px 16px;
+    padding: 0 16px 10px;
     width: 208px;
     flex-wrap: wrap;
 }

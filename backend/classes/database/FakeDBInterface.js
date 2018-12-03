@@ -3,16 +3,19 @@ const Logable = require('../../logable/Logable');
 const exampleProject = {
   columns: [
     {
+      id: '1-example-1',
       name: 'Need to do',
       tasks: [],
       color: 'red'
     },
     {
+      id: '2-example-2',
       name: 'In process',
       tasks: [],
       color: 'yellow'
     },
     {
+      id: '3-example-3',
       name: 'Completed',
       tasks: [],
       color: 'green'

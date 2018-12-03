@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { openPopupWindow, removeProjectCard } from '../../../actions';
-import ProjectCard from '../../../components/app/home/cards/ProjectCard';
+import ProjectCard from '../../../components/app/home/ProjectCard';
 
 
 const mapStateToProps = (state, ownProps) => ({

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Colors from '../../../constants/Colors';
 
 
-class DialogProjectWindow extends Component {
+class DialogWindow extends Component {
   constructor(props) {
     super(props);
 
@@ -65,29 +65,28 @@ class DialogProjectWindow extends Component {
   render() {
     const { state, handleChangeField, validateInput, handleChangeCardColor } = this;
     const { closeHandler, config } = this.props;
-    const saveHandler = this.props[config.saveHandlerName];
+    const saveHandler = this.props[config.saveButton.handler];
+
+    const { fieldsValue, validClassNameForFields, checkedColor } = state;
 
     const serializedData = {};
     config.fields.forEach((field, i) => {
-      serializedData[field.serializeTo] = state.fieldsValue[i]
+      serializedData[field.serializeTo] = fieldsValue[i]
     });
      if (config.otherData) {
        config.otherData.forEach(data => {
          serializedData[data.serializeTo] = data.value;
        });
      }
-    if (state.checkedColor) serializedData[config.colors.serializeTo] = state.checkedColor;
+    if (checkedColor) serializedData[config.colors.serializeTo] = checkedColor;
 
     const saveButtonOnClick = () => {
-      for (let value in state.fieldsValue) {
-        if (!validateInput(value)) return;
+      for (let i = 0 ; i < fieldsValue.length ; i++) {
+        if (!validateInput(fieldsValue[i]) && validClassNameForFields[i]) return;
       }
-
       closeHandler();
       saveHandler(serializedData);
     };
-
-    const { fieldsValue, validClassNameForFields, checkedColor } = state;
 
     const colorsDiv = !checkedColor ? null : Object.keys(Colors).map(color => (
       <div key={color}
@@ -152,11 +151,11 @@ class DialogProjectWindow extends Component {
                 id={'save-button'}
                 onClick={ saveButtonOnClick }
         >
-          { config.saveButtonText }
+          { config.saveButton.text }
         </button>
       </div>
     )
   }
 }
 
-export default DialogProjectWindow;
+export default DialogWindow;

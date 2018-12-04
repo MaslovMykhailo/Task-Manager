@@ -48,6 +48,6 @@
 }
 
 .project-content__action-bar {
-    width: 80px;
+    min-width: 80px;
     background: rgba(0, 128, 128, .4);
 }

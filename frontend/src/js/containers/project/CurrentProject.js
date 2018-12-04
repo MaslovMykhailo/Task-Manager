@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { openProject } from '../../actions';
-import Preloader from "../../components/app/common/Preloader";
+import Preloader from '../../components/app/common/Preloader';
+import TaskColumn from '../../components/app/project/TaskColumn';
+import AddTaskColumn from './column/AddTaskColumn';
 
 
 class CurrentProject extends Component {
@@ -21,8 +23,9 @@ class CurrentProject extends Component {
     return (
       !isSignedIn || dataIsLoading ?
         <Preloader wrapperClass={'current-project-content'} /> :
-        <div className={'current-project-content'}>
-          {null}
+        <div className={'column-container'}>
+          <TaskColumn name={'Need to do'} color={'purple'}/>
+          <AddTaskColumn />
         </div>
     )
   }

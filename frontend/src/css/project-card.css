@@ -41,6 +41,10 @@
     color: white;
 }
 
+.custom-card > .close:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
 .custom-card > .edit {
     bottom: 10px;
 }

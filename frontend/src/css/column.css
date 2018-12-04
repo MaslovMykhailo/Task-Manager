@@ -1,0 +1,54 @@
+.column-container {
+    flex: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto;
+    align-items: stretch;
+}
+
+.column {
+    margin: 7px 5px;
+    min-width: 320px;
+    /*flex-grow: 1;*/
+    /*height: calc(100% - 14px);*/
+}
+
+.column-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+.column-name {
+    align-self: center;
+    font-size: 20px;
+    color: white;
+}
+
+.column-edit {
+    color: white;
+}
+
+.column-edit:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.add-column {
+    margin: 7px 5px;
+    min-width: 320px;
+    background-color: #EEEEEF;
+    min-height: 48px;
+    align-self: start;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.add-column-button {
+    color: rgb(0,129,108);
+}
+
+.tasks {
+    flex-grow: 1;
+}
+

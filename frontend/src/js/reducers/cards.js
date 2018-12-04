@@ -2,7 +2,7 @@ import undoable, { includeAction } from 'redux-undo';
 import { arrayMove } from 'react-sortable-hoc';
 
 import * as types from '../constants/ActionTypes';
-import createId from '../createId';
+import createId from '../functions/createId';
 
 const defaultState = {
   list: [],

@@ -9,7 +9,7 @@ import SortableList from '../../SortableList';
 import { moveProjectCard } from '../../../actions';
 
 
-const ProjectsContainer = ({ cardsList, popupWindowIsOpen, onSortEnd, dataIsLoading }) => {
+const ProjectsCardContainer = ({ cardsList, popupWindowIsOpen, onSortEnd, dataIsLoading }) => {
   const projectCards = cardsList.map(card => {
     return <Card key={ card.id } config={ card } />
   });
@@ -49,4 +49,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectsCardContainer);

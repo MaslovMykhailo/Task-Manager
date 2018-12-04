@@ -29,6 +29,7 @@ export const getRemoteProjectData = project => ({ type: types.GET_REMOTE_PROJECT
 export const createTaskColumn = columnConfig => ({ type: types.CREATE_TASK_COLUMN, columnConfig });
 export const editTaskColumn = columnConfig => ({ type: types.EDIT_TASK_COLUMN, columnConfig });
 export const removeTaskColumn = id => ({ type: types.REMOVE_TASK_COLUMN, id });
+export const moveTaskColumn = (oldIndex, newIndex) => ({ type: types.MOVE_TASK_COLUMN, oldIndex, newIndex });
 
 
 export const openWs = () => ({ type: types.OPEN_WS });

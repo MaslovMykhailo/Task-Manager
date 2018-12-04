@@ -3,7 +3,7 @@ import React from 'react';
 import Content from '../common/Content';
 import UserInfo from '../../../containers/user/UserInfo';
 import HomeActionBar from '../actionBar/HomeActionBar';
-import ProjectsContainer from '../../../containers/home/cards/ProjectsContainer';
+import ProjectsCardContainer from '../../../containers/home/cards/ProjectsCardContainer';
 
 
 const Home = () => (
@@ -13,7 +13,7 @@ const Home = () => (
       <UserInfo className={'top-small-wrapper'}/>
     </Content>
     <Content className={'main-content'}>
-      <ProjectsContainer/>
+      <ProjectsCardContainer/>
       <HomeActionBar/>
     </Content>
   </div>

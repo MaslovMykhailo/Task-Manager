@@ -1,28 +1,33 @@
 .column-container {
-    flex: auto;
+    height: 100%;
     display: flex;
     flex-wrap: nowrap;
     overflow: auto;
     align-items: stretch;
+
 }
 
 .column {
-    margin: 7px 5px;
+    margin: 10px 5px;
     min-width: 320px;
-    /*flex-grow: 1;*/
-    /*height: calc(100% - 14px);*/
+}
+
+.column-wrapper {
+    display: flex;
 }
 
 .column-title {
     display: flex;
     justify-content: space-between;
     padding: 8px;
+    cursor: move;
 }
 
 .column-name {
     align-self: center;
     font-size: 20px;
     color: white;
+    cursor: text;
 }
 
 .column-edit {
@@ -34,7 +39,7 @@
 }
 
 .add-column {
-    margin: 7px 5px;
+    margin: 10px 5px;
     min-width: 320px;
     background-color: #EEEEEF;
     min-height: 48px;
@@ -42,10 +47,19 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-column:hover {
+    background-color: #D6D6D7;
 }
 
 .add-column-button {
     color: rgb(0,129,108);
+}
+
+.add-column-button:hover {
+    background-color: rgba(0, 129, 108, 0.2);
 }
 
 .tasks {

@@ -46,6 +46,7 @@
 .current-project-content {
     flex: auto;
     overflow: hidden;
+    position: relative;
 }
 
 .project-content__action-bar {

@@ -119,6 +119,17 @@ class DialogWindow extends Component {
       )
     });
 
+    const additionButton = config.additionButton ?
+      <button className="addition-button mdl-button mdl-button--raised"
+              onClick={() => {
+                this.props[config.additionButton.handler](config.additionButton.data);
+                closeHandler();
+              }}
+      >
+        { config.additionButton.text }
+      </button> :
+      null;
+
     return (
       <div className={'popup-window mdl-card mdl-shadow--2dp'}>
 
@@ -140,6 +151,8 @@ class DialogWindow extends Component {
         <div className={'color-container'}>
           { colorsDiv }
         </div>
+
+        { additionButton }
 
         <button className="close mdl-button mdl-button--icon"
                 onClick={ closeHandler }

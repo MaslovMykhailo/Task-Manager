@@ -7,7 +7,11 @@ import {arrayMove} from "react-sortable-hoc";
 const emptyProject = {
   id: undefined,
   name: undefined,
-  columns: []
+  columns: [],
+  popupWindow: {
+    id: undefined,
+    type: undefined
+  }
 };
 
 const currentProject =  (state = emptyProject, action) => {
@@ -51,6 +55,17 @@ const currentProject =  (state = emptyProject, action) => {
       } else {
         return state;
       }
+    }
+    case types.OPEN_POPUP_WINDOW: {
+      const { id, popupType } = action;
+      if (popupType !== 'create' || popupType !== 'edit') {
+        return { ...state, popupWindow: { id, type: popupType }};
+      } else {
+        return state;
+      }
+    }
+    case types.CLOSE_POPUP_WINDOW: {
+      return { ...state, popupWindow: { id: undefined, type: undefined }};
     }
     case types.CLOSE_PROJECT: {
       return emptyProject;

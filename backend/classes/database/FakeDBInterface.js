@@ -12,7 +12,7 @@ const exampleProject = {
       id: '2-example-2',
       name: 'In process',
       tasks: [],
-      color: 'yellow'
+      color: 'amber'
     },
     {
       id: '3-example-3',

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { openProject } from '../../actions';
 import Preloader from '../../components/app/common/Preloader';
 import ColumnsContainer from './column/ColumnsContainer';
+import PopupProjectWindow from './PopupProjectWindow';
 
 
 class CurrentProject extends Component {
@@ -17,13 +18,14 @@ class CurrentProject extends Component {
   }
 
   render() {
-    const { isSignedIn, dataIsLoading } = this.props;
+    const { isSignedIn, dataIsLoading, popupWindowIsOpen } = this.props;
 
     return (
       !isSignedIn || dataIsLoading ?
         <Preloader wrapperClass={'current-project-content'} /> :
         <div className={'current-project-content'}>
           <ColumnsContainer/>
+          { popupWindowIsOpen ? <PopupProjectWindow/> : null }
         </div>
     )
   }
@@ -35,7 +37,8 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     id, isSignedIn, dataIsLoading,
-    projectData: state.currentProject.present
+    projectData: state.currentProject.present,
+    popupWindowIsOpen: state.status.popupWindowIsOpen,
   };
 };
 

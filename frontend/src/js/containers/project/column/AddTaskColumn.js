@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { createTaskColumn } from "../../../actions";
+import { openPopupWindow } from "../../../actions";
 
 
 const AddTaskColumn = ({ onClickHandler }) => (
@@ -16,10 +16,7 @@ const AddTaskColumn = ({ onClickHandler }) => (
 
 const mapDispatchToProps = dispatch => ({
   onClickHandler: () => {
-    dispatch(createTaskColumn({
-      name: 'Need to do',
-      color: 'red'
-    }));
+    dispatch(openPopupWindow('create-column'))
   }
 });
 

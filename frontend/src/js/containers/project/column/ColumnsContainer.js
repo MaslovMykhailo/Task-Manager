@@ -1,15 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { moveTaskColumn } from "../../../actions";
+import { moveTaskColumn, openPopupWindow } from "../../../actions";
 import SortableList from '../../SortableList';
 import TaskColumn from '../../../components/app/project/TaskColumn'
 import AddTaskColumn from './AddTaskColumn';
 
 
-const ColumnsContainer = ({ columnsList, onSortEnd }) => {
+const ColumnsContainer = ({ columnsList, onSortEnd, onClickByColumnHandler }) => {
   const columns = columnsList.map(col => (
-    <TaskColumn name={col.name} color={col.color}/>
+    <TaskColumn name={col.name}
+                color={col.color}
+                onClickHandler={onClickByColumnHandler(col.id)}
+    />
   ));
 
   const shouldCancelStart = e => !e.target.classList.contains('column-title');
@@ -31,9 +34,9 @@ const mapStateToProps = ({ currentProject }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  // onClickByColumnHandler: columnConfig => () => {
-  //
-  // }
+  onClickByColumnHandler: (id) => () => {
+    dispatch(openPopupWindow('edit-column', id))
+  },
   onSortEnd: ({ oldIndex, newIndex }) => {
     dispatch(moveTaskColumn(oldIndex, newIndex));
   }

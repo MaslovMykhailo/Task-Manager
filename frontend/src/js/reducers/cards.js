@@ -48,8 +48,11 @@ const cards = (state = defaultState, action) => {
     }
     case types.OPEN_POPUP_WINDOW: {
       const { id, popupType } = action;
-      
-      return { ...state, popupWindow: { id, type: popupType }};
+      if (popupType === 'create' || popupType === 'edit') {
+        return { ...state, popupWindow: { id, type: popupType }};
+      } else {
+        return state;
+      }
     }
     case types.CLOSE_POPUP_WINDOW: {
       return { ...state, popupWindow: { id: undefined, type: undefined }};

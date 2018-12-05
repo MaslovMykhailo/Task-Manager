@@ -1,6 +1,7 @@
 .card-container-wrapper {
     overflow: auto;
     direction: rtl;
+    position: relative;
 }
 
 .card-container {

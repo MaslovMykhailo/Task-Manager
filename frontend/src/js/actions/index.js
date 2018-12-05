@@ -24,7 +24,8 @@ export const openProject = projectId => ({ type: types.OPEN_PROJECT, projectId }
 export const closeProject = projectId => ({ type: types.CLOSE_PROJECT, projectId });
 export const getCurrentProjectData = project => ({ type: types.GET_CURRENT_PROJECT_DATA, project });
 export const getRemoteProjectData = project => ({ type: types.GET_REMOTE_PROJECT_DATA, project });
-
+export const undoCurrentProject = () => ({ type: types.UNDO_CURRENT_PROJECT });
+export const redoCurrentProject = () => ({ type: types.REDO_CURRENT_PROJECT });
 
 export const createTaskColumn = columnConfig => ({ type: types.CREATE_TASK_COLUMN, columnConfig });
 export const editTaskColumn = columnConfig => ({ type: types.EDIT_TASK_COLUMN, columnConfig });

@@ -5,6 +5,15 @@
     justify-content: space-around;
 }
 
+.vertical-container {
+    flex-direction: column;
+    /*margin-top: 20%;*/
+}
+
+.vertical-container > .undo-redo-wrapper {
+    margin: 10px 0;
+}
+
 .undo-redo-wrapper {
     display: flex;
     flex-direction: column;

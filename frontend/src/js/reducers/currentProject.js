@@ -1,4 +1,4 @@
-import undoable from 'redux-undo';
+import undoable, { includeAction } from 'redux-undo';
 
 import * as types from '../constants/ActionTypes';
 import createId from '../functions/createId';
@@ -77,5 +77,11 @@ const currentProject =  (state = emptyProject, action) => {
 
 export default undoable(currentProject, {
   undoType: types.UNDO_CURRENT_PROJECT,
-  redoType: types.REDO_CURRENT_PROJECT
+  redoType: types.REDO_CURRENT_PROJECT,
+  filter: includeAction([
+    types.CREATE_TASK_COLUMN,
+    types.EDIT_TASK_COLUMN,
+    types.REMOVE_TASK_COLUMN,
+    types.MOVE_TASK_COLUMN
+  ])
 });

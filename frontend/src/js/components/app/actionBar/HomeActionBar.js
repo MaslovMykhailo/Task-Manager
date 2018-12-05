@@ -1,6 +1,6 @@
 import React from 'react';
 
-import UndoRedo from '../../../containers/home/UndoRedo';
+import UndoRedoCards from '../../../containers/home/UndoRedoCards';
 import SignOut from '../../../containers/home/SignOut';
 
 
@@ -8,7 +8,7 @@ const HomeActionBar = () => {
   return (
     <div className={'bottom-small-wrapper action-bar'}>
       <SignOut/>
-      <UndoRedo/>
+      <UndoRedoCards/>
     </div>
   )
 };

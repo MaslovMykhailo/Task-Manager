@@ -10,7 +10,8 @@ const emptyProject = {
   columns: [],
   popupWindow: {
     id: undefined,
-    type: undefined
+    type: undefined,
+    data: undefined,
   }
 };
 
@@ -56,16 +57,85 @@ const currentProject =  (state = emptyProject, action) => {
         return state;
       }
     }
+    case types.CREATE_TASK: {
+      const { columnId, shortName, description, links, position } = action.taskConfig;
+      const newColumns = state.columns.slice();
+      let colIndex = newColumns.findIndex(col => col.id === columnId);
+
+      const newTasks = newColumns[colIndex].tasks.slice();
+      newTasks.splice(position, 0, {
+        id: createId(shortName),
+        columnId,
+        shortName,
+        description,
+        links
+      });
+
+      newColumns[colIndex].tasks = newTasks;
+
+      return { ...state, columns: newColumns };
+    }
+    case types.EDIT_TASK: {
+      const { columnId, id, shortName, description, links, position } = action.taskConfig;
+
+      const newColumns = state.columns.slice();
+
+      const colIndex = newColumns.findIndex(col => col.id === columnId);
+      const colTasks = newColumns[colIndex].tasks.slice();
+      colTasks[position] = { id, shortName, description, links, columnId };
+
+      newColumns[colIndex].tasks = colTasks;
+
+      return { ...state, columns: newColumns };
+    }
+    case types.MOVE_TASK_INSIDE_COLUMN: {
+      const { columnId, oldIndex, newIndex } = action;
+
+      const newColumns = state.columns.splice();
+      let colIndex = newColumns.findIndex(col => col.id === columnId);
+
+      newColumns[colIndex].tasks = arrayMove(newColumns[colIndex].tasks, oldIndex, newIndex);
+
+      return { ...state, columns: newColumns };
+    }
+    case types.MOVE_TASK_TO_ANOTHER_COLUMN: {
+      const { oldColumnId, newColumnId, id, shortName, description, links, position } = action.taskConfig;
+
+      const newColumns = state.columns.slice();
+
+      const oldColIndex = newColumns.findIndex(col => col.id === oldColumnId);
+      const oldColTasks = newColumns[oldColIndex].tasks.slice();
+      oldColTasks.splice(oldColTasks.findIndex(task => task.id === id), 1);
+      newColumns[oldColIndex].tasks = oldColTasks;
+
+      const newColIndex = newColumns.findIndex(col => col.id === newColumnId);
+      const newColTasks = newColumns[newColIndex].tasks.slice();
+      newColTasks.splice(position - 1, 0, { id, shortName, description, links, newColumnId });
+      newColumns[newColIndex].tasks = newColTasks;
+
+      return { ...state, columns: newColumns };
+    }
+    case types.REMOVE_TASK: {
+      const { columnId, position } = action;
+
+      const newColumns = state.columns.slice();
+      let colIndex = newColumns.findIndex(col => col.id === columnId);
+      const newTasks = newColumns[colIndex].tasks.slice();
+      newTasks.splice(position, 1);
+      newColumns[colIndex].tasks = newTasks;
+
+      return { ...state, columns: newColumns };
+    }
     case types.OPEN_POPUP_WINDOW: {
       const { id, popupType } = action;
       if (popupType !== 'create' || popupType !== 'edit') {
-        return { ...state, popupWindow: { id, type: popupType }};
+        return { ...state, popupWindow: { id, type: popupType, data: undefined }};
       } else {
         return state;
       }
     }
     case types.CLOSE_POPUP_WINDOW: {
-      return { ...state, popupWindow: { id: undefined, type: undefined }};
+      return { ...state, popupWindow: emptyProject.popupWindow };
     }
     case types.CLOSE_PROJECT: {
       return emptyProject;

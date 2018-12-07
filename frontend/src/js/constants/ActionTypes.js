@@ -31,5 +31,12 @@ export const REMOVE_TASK_COLUMN = 'REMOVE_TASK_COLUMN';
 export const MOVE_TASK_COLUMN = 'MOVE_TASK_COLUMN';
 
 
+export const CREATE_TASK = 'CREATE_TASK';
+export const EDIT_TASK = 'EDIT_TASK';
+export const REMOVE_TASK = 'REMOVE_TASK';
+export const MOVE_TASK_INSIDE_COLUMN = 'MOVE_TASK_INSIDE_COLUMN';
+export const MOVE_TASK_TO_ANOTHER_COLUMN = 'MOVE_TASK_TO_ANOTHER_COLUMN';
+
+
 export const OPEN_WS = 'OPEN_WS';
 export const CLOSE_WS = 'CLOSE_WS';

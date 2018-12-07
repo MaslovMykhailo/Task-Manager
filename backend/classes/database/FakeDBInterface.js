@@ -6,7 +6,7 @@ const exampleProject = {
       id: '1-example-1',
       name: 'Need to do',
       tasks: [],
-      color: 'red'
+      color: 'pink'
     },
     {
       id: '2-example-2',

@@ -38,7 +38,7 @@ export const editTask = taskConfig => ({ type: types.EDIT_TASK, taskConfig });
 export const removeTask = (columnId, position) => ({ type: types.REMOVE_TASK, columnId, position });
 export const moveTaskInsideColumn = (columnId, oldIndex, newIndex) => ({
   type: types.MOVE_TASK_INSIDE_COLUMN,
-  oldIndex, newIndex
+  columnId, oldIndex, newIndex
 });
 export const moveTaskToAnotherColumn = () => ({
   type: types.MOVE_TASK_TO_ANOTHER_COLUMN,

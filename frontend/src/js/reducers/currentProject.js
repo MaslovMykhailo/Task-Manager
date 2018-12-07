@@ -91,9 +91,8 @@ const currentProject =  (state = emptyProject, action) => {
     case types.MOVE_TASK_INSIDE_COLUMN: {
       const { columnId, oldIndex, newIndex } = action;
 
-      const newColumns = state.columns.splice();
+      const newColumns = state.columns.slice();
       let colIndex = newColumns.findIndex(col => col.id === columnId);
-
       newColumns[colIndex].tasks = arrayMove(newColumns[colIndex].tasks, oldIndex, newIndex);
 
       return { ...state, columns: newColumns };

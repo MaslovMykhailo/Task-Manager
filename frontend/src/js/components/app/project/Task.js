@@ -2,8 +2,8 @@ import React from 'react';
 
 
 const Task = ({ shortName, onRemove, onMove, onShow }) => (
-  <div className="task mdl-card">
-    <div className="mdl-card__supporting-text">{ shortName }</div>
+  <div className="task mdl-card mdl-shadow--2dp">
+    <div className="mdl-card__supporting-text"><span>{ shortName }</span></div>
     <button className="mdl-button mdl-button--icon"
             onClick={ onShow }
     >
@@ -17,7 +17,7 @@ const Task = ({ shortName, onRemove, onMove, onShow }) => (
     <button className="mdl-button mdl-button--icon"
             onClick={ onRemove }
     >
-      <i className="material-icons">clear</i>
+      <i className="material-icons">delete</i>
     </button>
   </div>
 );

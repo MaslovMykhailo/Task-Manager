@@ -1,0 +1,54 @@
+.task-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.task {
+    margin: 3px 0 0;
+    width: 306px;
+    min-height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 10;
+    cursor: move;
+}
+
+.task .mdl-card__supporting-text {
+    font-size: 17px;
+    max-width: 200px;
+}
+
+.task .mdl-card__supporting-text span {
+    width: 200px;
+}
+
+.task .mdl-button:last-child {
+    margin-right: 4px;
+}
+
+.task .mdl-card__supporting-text {
+    color: black;
+}
+
+.add-task {
+    width: 306px;
+    min-height: auto;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    margin: 7px 0;
+    background-color: #EEEEEF;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-task:hover {
+    background-color: #D6D6D7;
+}
+
+.add-task button:hover {
+    background-color: rgba(0, 0, 0, 0.15);;
+}
+

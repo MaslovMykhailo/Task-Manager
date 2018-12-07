@@ -3,17 +3,18 @@
     display: flex;
     flex-wrap: nowrap;
     overflow: auto;
-    align-items: stretch;
-
+    align-items: flex-start;
 }
 
 .column {
     margin: 10px 5px;
     min-width: 320px;
+    min-height: auto;
 }
 
 .column-wrapper {
     display: flex;
+    height: 100%;
     z-index: 1;
 }
 
@@ -64,6 +65,7 @@
 }
 
 .tasks {
-    flex-grow: 1;
+    height: calc(100vh - 165px);
+    overflow: auto;
 }
 

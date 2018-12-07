@@ -14,13 +14,15 @@ const TaskContainer = ({ columnId, tasksList, onSortEnd, onRemove }) => {
     />
   );
 
+  const shouldCancelStart = e => e.target.tagName.toLowerCase() === 'i';
+
   return (
     <SortableList className={'task-container'}
                   itemClassName={'task'}
                   axis={'y'}
                   items={tasks}
-                  onSortEnd={onSortEnd}
-                  shouldCancelStart={() => true}
+                  onSortEnd={onSortEnd(columnId)}
+                  shouldCancelStart={shouldCancelStart}
                   insertComponent={<AddTask columnId={columnId}/>}
                   useWindowAsScrollContainer={true}
     />
@@ -33,12 +35,10 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSortEnd: columnId => (oldIndex, newIndex) => {
-    console.log('move');
-    dispatch(moveTaskInsideColumn(columnId, oldIndex, newIndex))
+  onSortEnd: columnId => ({ oldIndex, newIndex }) => {
+    if (oldIndex !== newIndex) dispatch(moveTaskInsideColumn(columnId, oldIndex, newIndex))
   },
   onRemove: (columnId, position) => () => {
-    console.log('remove');
     dispatch(removeTask(columnId, position))
   }
 });

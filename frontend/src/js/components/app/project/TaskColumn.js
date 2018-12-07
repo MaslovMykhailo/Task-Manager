@@ -4,7 +4,7 @@ import Colors from "../../../constants/Colors";
 import createRGBA from '../../../functions/createRGBA';
 
 
-const TaskColumn = ({ name, color, onClickHandler }) => {
+const TaskColumn = ({ name, color, onClickHandler, children }) => {
   return (
     <div className="column mdl-card mdl-shadow--4dp">
       <div className="column-title mdl-card__title"
@@ -19,7 +19,9 @@ const TaskColumn = ({ name, color, onClickHandler }) => {
       </div>
       <div className="tasks"
            style={{background: createRGBA(color, '0.1')}}
-      />
+      >
+        { children }
+      </div>
     </div>
   )
 };

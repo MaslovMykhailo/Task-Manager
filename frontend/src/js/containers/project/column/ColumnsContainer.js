@@ -5,6 +5,7 @@ import { moveTaskColumn, openPopupWindow } from "../../../actions";
 import SortableList from '../../SortableList';
 import TaskColumn from '../../../components/app/project/TaskColumn'
 import AddTaskColumn from './AddTaskColumn';
+import TaskContainer from "../task/TaskContainer";
 
 
 const ColumnsContainer = ({ columnsList, onSortEnd, onClickByColumnHandler }) => {
@@ -12,7 +13,9 @@ const ColumnsContainer = ({ columnsList, onSortEnd, onClickByColumnHandler }) =>
     <TaskColumn name={col.name}
                 color={col.color}
                 onClickHandler={onClickByColumnHandler(col.id)}
-    />
+    >
+      <TaskContainer columnId={col.id}/>
+    </TaskColumn>
   ));
 
   const shouldCancelStart = e => !e.target.classList.contains('column-title');
@@ -38,7 +41,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(openPopupWindow('edit-column', id))
   },
   onSortEnd: ({ oldIndex, newIndex }) => {
-    dispatch(moveTaskColumn(oldIndex, newIndex));
+    if (oldIndex !== newIndex) dispatch(moveTaskColumn(oldIndex, newIndex));
   }
 });
 

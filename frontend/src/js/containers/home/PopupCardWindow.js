@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { createProjectCard, editProjectCard, closePopupWindow } from '../../actions';
-import DialogWindow from '../../components/app/common/DialogWindow';
+import DialogWindow from '../../components/app/common/dialogWindow/DialogWindow';
 
 
 const mapStateToProps = state => {

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { openProject } from '../../actions';
 import Preloader from '../../components/app/common/Preloader';
 import ColumnsContainer from './column/ColumnsContainer';
-import PopupProjectWindow from './PopupProjectWindow';
+import PopupColumnWindow from './column/PopupColumnWindow';
 
 
 class CurrentProject extends Component {
@@ -25,7 +25,7 @@ class CurrentProject extends Component {
         <Preloader wrapperClass={'current-project-content'} /> :
         <div className={'current-project-content'}>
           <ColumnsContainer/>
-          { popupWindowIsOpen ? <PopupProjectWindow/> : null }
+          { popupWindowIsOpen ? <PopupColumnWindow/> : null }
         </div>
     )
   }

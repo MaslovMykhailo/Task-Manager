@@ -1,8 +1,24 @@
+import React from 'react';
 import { connect } from 'react-redux';
 
-import { createTaskColumn, editTaskColumn, removeTaskColumn, closePopupWindow } from '../../actions/index';
-import DialogWindow from '../../components/app/common/DialogWindow';
+import { createTaskColumn, editTaskColumn, removeTaskColumn, closePopupWindow } from '../../../actions';
+import DialogWindow from '../../../components/app/common/dialogWindow/DialogWindow';
 
+const PopupColumnWindow = props => {
+  if (props.config) {
+    const { config, editColumnHandler, createColumnHandler, removeColumnHandler, closeHandler } = props;
+    return (
+      <DialogWindow config={config}
+                    editColumnHandler={editColumnHandler}
+                    createColumnHandler={createColumnHandler}
+                    removeColumnHandler={removeColumnHandler}
+                    closeHandler={closeHandler}
+      />
+    )
+  } else {
+    return null;
+  }
+};
 
 const mapStateToProps = state => {
   const { id, type } = state.currentProject.present.popupWindow;
@@ -44,7 +60,7 @@ const mapStateToProps = state => {
         }
       }
     }
-    default: {
+    case 'create-column': {
       return {
         config: {
           windowTitle: 'Create column menu',
@@ -68,6 +84,8 @@ const mapStateToProps = state => {
         }
       }
     }
+    default:
+      return null;
   }
 };
 
@@ -78,4 +96,4 @@ const mapDispatchToProps = dispatch => ({
   closeHandler: () => dispatch(closePopupWindow())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(DialogWindow);
+export default connect(mapStateToProps, mapDispatchToProps)(PopupColumnWindow);

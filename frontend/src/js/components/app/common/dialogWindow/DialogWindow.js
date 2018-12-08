@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Colors from '../../../constants/Colors';
-
+import Colors from '../../../../constants/Colors';
+import validateInput from '../../../../functions/validate';
 
 class DialogWindow extends Component {
   constructor(props) {
@@ -30,17 +30,13 @@ class DialogWindow extends Component {
     this.handleChangeField = this.handleChangeField.bind(this);
   }
 
-  validateInput(input) {
-    return input.replace(/\s+/, "").replace(/\s{2,}/g,' ').length > 0;
-  }
-
   handleChangeField(index) {
     return (event) => {
       const editedFieldsValue = this.state.fieldsValue.slice();
       const editedClassNameForFields = this.state.validClassNameForFields.slice();
 
       const value = event.target.value;
-      const className = this.validateInput(value) ? ' incorrect_hidden' : ' incorrect_visible';
+      const className = validateInput(value) ? ' incorrect_hidden' : ' incorrect_visible';
 
       editedFieldsValue[index] = value;
       if (editedClassNameForFields[index]) {
@@ -63,8 +59,8 @@ class DialogWindow extends Component {
   }
 
   render() {
-    const { state, handleChangeField, validateInput, handleChangeCardColor } = this;
-    const { closeHandler, config } = this.props;
+    const { state, handleChangeField, handleChangeCardColor } = this;
+    const { closeHandler, config, children } = this.props;
     const saveHandler = this.props[config.saveButton.handler];
 
     const { fieldsValue, validClassNameForFields, checkedColor } = state;
@@ -152,6 +148,7 @@ class DialogWindow extends Component {
           { colorsDiv }
         </div>
 
+        { children }
         { additionButton }
 
         <button className="close mdl-button mdl-button--icon"

@@ -3,18 +3,17 @@
     display: flex;
     flex-wrap: nowrap;
     overflow: auto;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .column {
-    margin: 10px 5px;
+    margin: 0 5px;
     min-width: 320px;
     min-height: auto;
 }
 
 .column-wrapper {
     display: flex;
-    height: 100%;
     z-index: 1;
 }
 
@@ -40,8 +39,13 @@
     background-color: rgba(0, 0, 0, 0.15);
 }
 
+.add-column-wrapper {
+    display: flex;
+    height: calc(100vh - 104px);
+}
+
 .add-column {
-    margin: 10px 5px;
+    margin: 0 5px;
     min-width: 320px;
     background-color: #EEEEEF;
     min-height: 48px;
@@ -65,7 +69,7 @@
 }
 
 .tasks {
-    height: calc(100vh - 165px);
+    height: calc(100vh - 152px);
     overflow: auto;
 }
 

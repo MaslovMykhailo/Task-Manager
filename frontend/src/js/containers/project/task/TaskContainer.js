@@ -3,14 +3,20 @@ import { connect } from 'react-redux';
 
 import SortableList from "../../SortableList";
 import AddTask from './AddTask';
-import { moveTaskInsideColumn, removeTask } from "../../../actions";
+import { moveTaskInsideColumn, moveTaskToAnotherColumn, removeTask } from "../../../actions";
 import Task from "../../../components/app/project/Task";
 
 
-const TaskContainer = ({ columnId, tasksList, onSortEnd, onRemove }) => {
+const TaskContainer = ({ columnId, tasksList, nextColumnId, positionInNextCol, onSortEnd, onRemove, onMove }) => {
   const tasks = tasksList.map((task, i) =>
     <Task shortName={task.shortName}
           onRemove={onRemove(columnId, i)}
+          onMove={nextColumnId ? onMove({
+            oldColumnId: columnId,
+            newColumnId: nextColumnId,
+            ...task,
+            position: positionInNextCol + 1
+          }) : null}
     />
   );
 
@@ -29,10 +35,22 @@ const TaskContainer = ({ columnId, tasksList, onSortEnd, onRemove }) => {
   )
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  columnId: ownProps.columnId,
-  tasksList: state.currentProject.present.columns.find(col => col.id === ownProps.columnId).tasks
-});
+const mapStateToProps = (state, ownProps) => {
+  const { columns } = state.currentProject.present;
+  const { columnId } = ownProps;
+
+  let colIndex = columns.findIndex(col => col.id === columnId);
+  const tasksList = columns[colIndex].tasks;
+  const nextColumnId = columns[colIndex+1] ? columns[colIndex+1].id : undefined;
+  const positionInNextCol = columns[colIndex+1] ? columns[colIndex+1].tasks.length : undefined;
+
+  return {
+    columnId,
+    tasksList,
+    nextColumnId,
+    positionInNextCol
+  }
+};
 
 const mapDispatchToProps = dispatch => ({
   onSortEnd: columnId => ({ oldIndex, newIndex }) => {
@@ -40,6 +58,9 @@ const mapDispatchToProps = dispatch => ({
   },
   onRemove: (columnId, position) => () => {
     dispatch(removeTask(columnId, position))
+  },
+  onMove: taskConfig => () => {
+    dispatch(moveTaskToAnotherColumn(taskConfig));
   }
 });
 

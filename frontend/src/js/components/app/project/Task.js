@@ -9,11 +9,11 @@ const Task = ({ shortName, onRemove, onMove, onShow }) => (
     >
       <i className="material-icons">visibility</i>
     </button>
-    <button className="mdl-button mdl-button--icon"
-            onClick={ onMove }
-    >
-      <i className="material-icons">arrow_forward</i>
-    </button>
+    {onMove ? <button className="mdl-button mdl-button--icon"
+              onClick={ onMove }
+        >
+          <i className="material-icons">arrow_forward</i>
+        </button> : null}
     <button className="mdl-button mdl-button--icon"
             onClick={ onRemove }
     >

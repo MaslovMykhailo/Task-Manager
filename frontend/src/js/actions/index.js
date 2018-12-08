@@ -40,8 +40,9 @@ export const moveTaskInsideColumn = (columnId, oldIndex, newIndex) => ({
   type: types.MOVE_TASK_INSIDE_COLUMN,
   columnId, oldIndex, newIndex
 });
-export const moveTaskToAnotherColumn = () => ({
+export const moveTaskToAnotherColumn = taskConfig => ({
   type: types.MOVE_TASK_TO_ANOTHER_COLUMN,
+  taskConfig
 });
 
 

@@ -21,7 +21,6 @@ const ProjectsCardContainer = ({ cardsList, popupWindowIsOpen, onSortEnd, dataIs
     }
   };
   
-  
   return dataIsLoading ?  <Preloader wrapperClass={'bottom-big-wrapper'}/> :
       <div className={'bottom-big-wrapper card-container-wrapper'}>
         <SortableList className={'card-container'}

@@ -109,7 +109,9 @@ const currentProject =  (state = emptyProject, action) => {
 
       const newColIndex = newColumns.findIndex(col => col.id === newColumnId);
       const newColTasks = newColumns[newColIndex].tasks.slice();
-      newColTasks.splice(position - 1, 0, { id, shortName, description, links, newColumnId });
+      newColTasks.splice(position - 1, 0, {
+        id, shortName, description, links, columnId: newColumnId
+      });
       newColumns[newColIndex].tasks = newColTasks;
 
       return { ...state, columns: newColumns };

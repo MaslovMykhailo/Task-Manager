@@ -85,7 +85,9 @@ const mapStateToProps = state => {
       }
     }
     default:
-      return null;
+      return {
+        config: null
+      };
   }
 };
 

@@ -5,6 +5,7 @@ import { openProject } from '../../actions';
 import Preloader from '../../components/app/common/Preloader';
 import ColumnsContainer from './column/ColumnsContainer';
 import PopupColumnWindow from './column/PopupColumnWindow';
+import PopupTaskWindow from './task/PopupTaskWindow';
 
 
 class CurrentProject extends Component {
@@ -25,6 +26,7 @@ class CurrentProject extends Component {
         <Preloader wrapperClass={'current-project-content'} /> :
         <div className={'current-project-content'}>
           <ColumnsContainer/>
+          { popupWindowIsOpen ? <PopupTaskWindow/> : null }
           { popupWindowIsOpen ? <PopupColumnWindow/> : null }
         </div>
     )

@@ -83,6 +83,23 @@
     visibility: visible;
 }
 
+.popup-textarea {
+    width: 400px;
+    font-size: 1.2em;
+    color: rgba(0,0,0,.54);
+    padding: 0 16px 16px;
+}
+
+.popup-textarea > .mdl-textfield__input {
+    margin-top: 5px;
+    color: black;
+}
+
+.popup-textarea > .mdl-textfield__input:focus {
+    outline-color: #FF004B;
+}
+
+
 @media screen and (max-width: 1000px) {
     .popup-window {
         position: fixed;

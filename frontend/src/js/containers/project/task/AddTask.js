@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createTask } from "../../../actions";
+import { openPopupWindow } from "../../../actions";
 import Colors from "../../../constants/Colors";
 
 
@@ -28,13 +28,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   onClick: (columnId, position) => () => {
-    dispatch(createTask({
-      columnId,
-      position,
-      shortName: position.toString(),
-      description: '',
-      links: []
-    }))
+    dispatch(openPopupWindow('create-task', columnId))
   }
 });
 

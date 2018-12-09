@@ -4,30 +4,67 @@ import { connect } from 'react-redux';
 import DialogWindow from "../../../components/app/common/dialogWindow/DialogWindow";
 import {closePopupWindow, createTask, editTask} from "../../../actions";
 import Textarea from "../../../components/app/common/dialogWindow/Textarea";
+import validate from "../../../functions/validate";
+import Links from "../../../components/app/common/dialogWindow/Links";
 
 
 class PopupTaskWindow extends Component {
   constructor(props) {
     super(props);
 
+    const { description, links } = props;
+
     this.state = {
-      taskDescription: props.description || '',
+      taskDescription: description || '',
+      links: links || [],
+      newLinkName: '',
+      newLinkSrc: ''
     };
 
-    this.changeDescriptionHandler = this.changeDescriptionHandler.bind(this);
+    this.changeInputHandler = this.changeInputHandler.bind(this);
+    this.saveLinkHandler = this.saveLinkHandler.bind(this);
+    this.deleteLinkHandler = this.deleteLinkHandler.bind(this);
   }
 
-  changeDescriptionHandler(event) {
+  changeInputHandler(fieldName) {
+    return event => {
+      const value = event.target.value;
+      this.setState(state => ({
+        [fieldName]: validate(value) || value.length < 1 ? value : state[fieldName]
+      }));
+    }
+  }
+
+  saveLinkHandler() {
+    const { links, newLinkName, newLinkSrc } = this.state;
+    const newLinks = links.slice();
+    newLinks.push({ name: newLinkName, src: newLinkSrc });
+
     this.setState({
-      taskDescription: event.target.value
-    })
+      links: newLinks,
+      newLinkName: '',
+      newLinkSrc: ''
+    });
+  }
+
+  deleteLinkHandler(i) {
+    return (event) => {
+      event.stopPropagation();
+      const {links} = this.state;
+      const newLinks = links.slice();
+      newLinks.splice(i, 1);
+
+      this.setState({
+        links: newLinks
+      });
+    }
   }
 
   render() {
     const { config, createTask ,closeHandler } = this.props;
     if (config) {
-      const { changeDescriptionHandler } = this;
-      const { taskDescription } = this.state;
+      const { changeInputHandler, saveLinkHandler, deleteLinkHandler } = this;
+      const { taskDescription, links, newLinkName, newLinkSrc } = this.state;
 
       const createTaskHandler = (taskConfig) => {
         createTask({ ...taskConfig, description: taskDescription });
@@ -41,7 +78,15 @@ class PopupTaskWindow extends Component {
         >
           <Textarea title={'Task description'}
                     value={taskDescription}
-                    changeValueHandler={changeDescriptionHandler}/>
+                    changeValueHandler={changeInputHandler('taskDescription')}/>
+          <Links linksList={links}
+                 linkNameValue={newLinkName}
+                 linkSrcValue={newLinkSrc}
+                 saveLinkHandler={saveLinkHandler}
+                 deleteLinkHandler={deleteLinkHandler}
+                 changeLinkNameHandler={changeInputHandler('newLinkName')}
+                 changeLinkSrcHandler={changeInputHandler('newLinkSrc')}
+          />
         </DialogWindow>
       )
     } else {

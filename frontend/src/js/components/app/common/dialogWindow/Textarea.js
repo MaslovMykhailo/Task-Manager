@@ -10,8 +10,7 @@ const Textarea = ({ title, value, changeValueHandler }) => (
               rows="3"
               onChange={changeValueHandler}
               value={value}
-    >
-    </textarea>
+    />
   </div>
 );
 

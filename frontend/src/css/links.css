@@ -1,0 +1,40 @@
+.links-wrapper {
+    padding: 0 16px;
+    display: flex;
+}
+
+.links-title {
+    font-size: 1.2em;
+    color: rgba(0,0,0,.54);
+    margin-bottom: 5px;
+}
+
+.links-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-right: 16px;
+}
+
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    height: 75px;
+    overflow-y: auto;
+    border: 1px solid rgba(0,0,0,.34);
+    border-radius: 3px;
+}
+
+.link {
+    margin: 2px;
+}
+
+.link-name {
+    padding: 0;
+    width: 150px;
+    margin-right: 10px;
+}
+
+.link-src {
+    width: 265px;
+}

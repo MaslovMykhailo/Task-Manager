@@ -25,7 +25,7 @@ const ProjectCard = ({ config, editCard, removeCard, openProject }) => {
       <button className="close mdl-button mdl-button--icon"
               onClick={ removeCard(id) }
       >
-        <i className="material-icons">close</i>
+        <i className="material-icons">delete_forever</i>
       </button>
       <button className="edit mdl-button mdl-button--icon"
               style={{ color: Colors[cardColor].darkRGB }}

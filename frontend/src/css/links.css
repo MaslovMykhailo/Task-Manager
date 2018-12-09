@@ -29,6 +29,10 @@
     margin: 2px;
 }
 
+.add-link-container .mdl-textfield__input:focus {
+    outline-color: #FF004B;
+}
+
 .link-name {
     padding: 0;
     width: 150px;
@@ -37,4 +41,6 @@
 
 .link-src {
     width: 265px;
+    padding-bottom: 10px;
 }
+

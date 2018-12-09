@@ -41,7 +41,7 @@ const Links = props => {
                    placeholder={'link name...'}
             />
           </div>
-          <button className="mdl-button mdl-button--icon"
+          <button className="mdl-button mdl-button--icon mdl-button--colored mdl-button--accent"
                   onClick={saveLinkHandler}
                   disabled={!linkNameValue.length || !linkSrcValue.length}
           >

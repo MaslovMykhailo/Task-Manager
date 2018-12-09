@@ -63,7 +63,7 @@ const currentProject =  (state = emptyProject, action) => {
       let colIndex = newColumns.findIndex(col => col.id === columnId);
 
       const newTasks = newColumns[colIndex].tasks.slice();
-      newTasks.splice(position, 0, {
+      newTasks.splice(position - 1, 0, {
         id: createId(shortName),
         columnId,
         shortName,

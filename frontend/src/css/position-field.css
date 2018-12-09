@@ -1,0 +1,20 @@
+.position-field {
+    padding: 0 16px;
+    color: rgba(0,0,0,.54);
+    font-size: 1.2em;
+}
+
+.position-field .mdl-textfield {
+    color: black;
+    padding-top: 10px;
+    width: 40px;
+    margin-right: 10px;
+}
+
+.position-field .mdl-textfield .mdl-textfield__input {
+    text-align: center;
+}
+
+.position-field .mdl-textfield .mdl-textfield__input:focus {
+    outline-color: #FF004B;
+}

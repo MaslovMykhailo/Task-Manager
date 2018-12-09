@@ -6,24 +6,33 @@ import {closePopupWindow, createTask, editTask} from "../../../actions";
 import Textarea from "../../../components/app/common/dialogWindow/Textarea";
 import validate from "../../../functions/validate";
 import Links from "../../../components/app/common/dialogWindow/Links";
+import ChipList from "../../../components/app/common/dialogWindow/ChipList";
+import PositionField from "../../../components/app/common/dialogWindow/PositionField";
 
 
 class PopupTaskWindow extends Component {
   constructor(props) {
     super(props);
 
-    const { description, links } = props;
+    const { config, description, links, checkedColumnIndex, columns, currentPosition } = props;
 
-    this.state = {
-      taskDescription: description || '',
-      links: links || [],
-      newLinkName: '',
-      newLinkSrc: ''
-    };
+    if (config) {
+      this.state = {
+        taskDescription: description || '',
+        links: links || [],
+        newLinkName: '',
+        newLinkSrc: '',
+        checkedColumnIndex,
+        position: currentPosition || columns[checkedColumnIndex].tasksCount + 1,
+      };
+    }
 
     this.changeInputHandler = this.changeInputHandler.bind(this);
     this.saveLinkHandler = this.saveLinkHandler.bind(this);
     this.deleteLinkHandler = this.deleteLinkHandler.bind(this);
+    this.changeColumnHandler = this.changeColumnHandler.bind(this);
+    this.incPosition = this.incPosition.bind(this);
+    this.decPosition = this.decPosition.bind(this);
   }
 
   changeInputHandler(fieldName) {
@@ -60,14 +69,46 @@ class PopupTaskWindow extends Component {
     }
   }
 
+  changeColumnHandler(i) {
+    return () => {
+      this.setState((state, props) => ({
+        checkedColumnIndex: i,
+        position: props.columns[i].tasksCount + 1
+      }));
+    }
+  }
+
+  incPosition() {
+    this.setState(state => ({
+      position: state.position + 1
+    }));
+  }
+
+  decPosition() {
+    this.setState(state => ({
+      position: state.position - 1
+    }));
+  }
+
   render() {
-    const { config, createTask ,closeHandler } = this.props;
+    const { config } = this.props;
+
     if (config) {
-      const { changeInputHandler, saveLinkHandler, deleteLinkHandler } = this;
-      const { taskDescription, links, newLinkName, newLinkSrc } = this.state;
+      const { createTask, closeHandler, columns } = this.props;
+      const {
+        changeInputHandler,
+        saveLinkHandler, deleteLinkHandler,
+        changeColumnHandler,
+        incPosition, decPosition
+      } = this;
+      const { taskDescription, links, newLinkName, newLinkSrc, checkedColumnIndex, position } = this.state;
 
       const createTaskHandler = (taskConfig) => {
-        createTask({ ...taskConfig, description: taskDescription });
+        createTask({ ...taskConfig,
+          description: taskDescription,
+          links, position,
+          columnId: columns[checkedColumnIndex].columnId
+        });
         closeHandler();
       };
 
@@ -87,6 +128,17 @@ class PopupTaskWindow extends Component {
                  changeLinkNameHandler={changeInputHandler('newLinkName')}
                  changeLinkSrcHandler={changeInputHandler('newLinkSrc')}
           />
+          <ChipList title={'Column'}
+                    itemList={columns}
+                    checkedItemIndex={checkedColumnIndex}
+                    onClickHandler={changeColumnHandler}
+          />
+          <PositionField currentValue={position}
+                         minValue={1} maxValue={columns[checkedColumnIndex].tasksCount+1}
+                         incValue={incPosition}
+                         decValue={decPosition}
+                         title={'Position'}
+          />
         </DialogWindow>
       )
     } else {
@@ -97,6 +149,14 @@ class PopupTaskWindow extends Component {
 
 const mapStateToProps = state => {
   const { id, type } = state.currentProject.present.popupWindow;
+  const columns = state.currentProject.present.columns.map(col => ({
+    columnId: col.id,
+    color: col.color,
+    tasksCount: col.tasks.length,
+    value: col.name
+  }));
+
+  const checkedColumnIndex = columns.findIndex(col => col.columnId === id);
 
   switch (type) {
     case 'create-task': {
@@ -114,14 +174,10 @@ const mapStateToProps = state => {
           saveButton: {
             text: 'create',
             handler: 'createTaskHandler'
-          },
-          otherData: [
-            {
-              value: id,
-              serializeTo: 'columnId'
-            }
-          ]
-        }
+          }
+        },
+        columns,
+        checkedColumnIndex: checkedColumnIndex
       }
     }
     case 'show-task': {

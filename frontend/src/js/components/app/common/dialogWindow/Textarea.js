@@ -7,7 +7,7 @@ const Textarea = ({ title, value, changeValueHandler }) => (
     <br/>
     <textarea className="mdl-textfield__input"
               type="text"
-              rows="3"
+              rows="2"
               onChange={changeValueHandler}
               value={value}
     />

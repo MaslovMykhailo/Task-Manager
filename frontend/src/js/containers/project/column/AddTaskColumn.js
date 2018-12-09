@@ -10,7 +10,7 @@ const AddTaskColumn = ({ onClickHandler }) => (
          onClick={onClickHandler}
     >
       <button className="add-column-button mdl-button mdl-button--icon">
-        <i className="material-icons">add</i>
+        <i className="material-icons">add_circle_outline</i>
       </button>
     </div>
   </div>

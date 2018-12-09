@@ -14,7 +14,7 @@ const CloseProjectButton = ({ projectId, redirectToHome, closeProject }) => {
     <button className="close-project-button mdl-button mdl-button--fab mdl-button--colored"
             onClick={ onClick }
     >
-      <i className="material-icons">keyboard_return</i>
+      <i className="material-icons">home</i>
     </button>
   )
 };

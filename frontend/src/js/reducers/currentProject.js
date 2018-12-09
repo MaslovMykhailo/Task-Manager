@@ -75,19 +75,6 @@ const currentProject =  (state = emptyProject, action) => {
 
       return { ...state, columns: newColumns };
     }
-    case types.EDIT_TASK: {
-      const { columnId, id, shortName, description, links, position } = action.taskConfig;
-
-      const newColumns = state.columns.slice();
-
-      const colIndex = newColumns.findIndex(col => col.id === columnId);
-      const colTasks = newColumns[colIndex].tasks.slice();
-      colTasks[position] = { id, shortName, description, links, columnId };
-
-      newColumns[colIndex].tasks = colTasks;
-
-      return { ...state, columns: newColumns };
-    }
     case types.MOVE_TASK_INSIDE_COLUMN: {
       const { columnId, oldIndex, newIndex } = action;
 
@@ -97,19 +84,23 @@ const currentProject =  (state = emptyProject, action) => {
 
       return { ...state, columns: newColumns };
     }
-    case types.MOVE_TASK_TO_ANOTHER_COLUMN: {
-      const { oldColumnId, newColumnId, id, shortName, description, links, position } = action.taskConfig;
+    case types.EDIT_TASK: {
+      const {
+        oldColumnId, newColumnId,
+        id, shortName, description, links,
+        newPosition, oldPosition
+      } = action.taskConfig;
 
       const newColumns = state.columns.slice();
 
       const oldColIndex = newColumns.findIndex(col => col.id === oldColumnId);
       const oldColTasks = newColumns[oldColIndex].tasks.slice();
-      oldColTasks.splice(oldColTasks.findIndex(task => task.id === id), 1);
+      oldColTasks.splice(oldPosition, 1);
       newColumns[oldColIndex].tasks = oldColTasks;
 
       const newColIndex = newColumns.findIndex(col => col.id === newColumnId);
       const newColTasks = newColumns[newColIndex].tasks.slice();
-      newColTasks.splice(position - 1, 0, {
+      newColTasks.splice(newPosition - 1, 0, {
         id, shortName, description, links, columnId: newColumnId
       });
       newColumns[newColIndex].tasks = newColTasks;
@@ -128,9 +119,9 @@ const currentProject =  (state = emptyProject, action) => {
       return { ...state, columns: newColumns };
     }
     case types.OPEN_POPUP_WINDOW: {
-      const { id, popupType } = action;
+      const { id, popupType, data } = action;
       if (popupType !== 'create' || popupType !== 'edit') {
-        return { ...state, popupWindow: { id, type: popupType, data: undefined }};
+        return { ...state, popupWindow: { id, type: popupType, data}};
       } else {
         return state;
       }

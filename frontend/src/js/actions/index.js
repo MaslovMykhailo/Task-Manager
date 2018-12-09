@@ -7,7 +7,7 @@ export const signInFailure = () => ({ type: types.SIGN_IN_FAILURE });
 export const signOutSuccess = () => ({ type: types.SIGN_OUT_SUCCESS });
 
 
-export const openPopupWindow = (popupType, id) => ({ type: types.OPEN_POPUP_WINDOW, popupType, id });
+export const openPopupWindow = (popupType, id, data) => ({ type: types.OPEN_POPUP_WINDOW, popupType, id, data });
 export const closePopupWindow = () => ({ type: types.CLOSE_POPUP_WINDOW });
 
 
@@ -39,10 +39,6 @@ export const removeTask = (columnId, position) => ({ type: types.REMOVE_TASK, co
 export const moveTaskInsideColumn = (columnId, oldIndex, newIndex) => ({
   type: types.MOVE_TASK_INSIDE_COLUMN,
   columnId, oldIndex, newIndex
-});
-export const moveTaskToAnotherColumn = taskConfig => ({
-  type: types.MOVE_TASK_TO_ANOTHER_COLUMN,
-  taskConfig
 });
 
 

@@ -94,7 +94,12 @@ class PopupTaskWindow extends Component {
     const { config } = this.props;
 
     if (config) {
-      const { createTask, closeHandler, columns } = this.props;
+      const {
+        createTask, editTask, closeHandler, columns,
+        checkedColumnIndex: oldColumnIndex,
+        currentPosition: oldPosition
+      } = this.props;
+
       const {
         changeInputHandler,
         saveLinkHandler, deleteLinkHandler,
@@ -104,18 +109,30 @@ class PopupTaskWindow extends Component {
       const { taskDescription, links, newLinkName, newLinkSrc, checkedColumnIndex, position } = this.state;
 
       const createTaskHandler = (taskConfig) => {
+        closeHandler();
         createTask({ ...taskConfig,
           description: taskDescription,
           links, position,
           columnId: columns[checkedColumnIndex].columnId
         });
+      };
+
+      const editTaskHandler = (taskConfig) => {
         closeHandler();
+        editTask({
+          oldColumnId: columns[oldColumnIndex].columnId,
+          newColumnId: columns[checkedColumnIndex].columnId,
+          ...taskConfig,
+          description: taskDescription, links,
+          newPosition: position, oldPosition
+        })
       };
 
       return (
         <DialogWindow config={config}
                       closeHandler={closeHandler}
                       createTaskHandler={createTaskHandler}
+                      editTaskHandler={editTaskHandler}
         >
           <Textarea title={'Task description'}
                     value={taskDescription}
@@ -138,6 +155,7 @@ class PopupTaskWindow extends Component {
                          incValue={incPosition}
                          decValue={decPosition}
                          title={'Position'}
+                         changeValueHandler={(e) => { e.stopPropagation() }}
           />
         </DialogWindow>
       )
@@ -181,8 +199,36 @@ const mapStateToProps = state => {
       }
     }
     case 'show-task': {
-      return {
+      const currentPosition = state.currentProject.present.popupWindow.data;
+      const currentTask = state.currentProject.present.columns[checkedColumnIndex].tasks[currentPosition];
 
+      return {
+        config: {
+          windowTitle: 'Show task menu',
+          fields: [
+            {
+              name: 'Task short name',
+              withValidation: true,
+              value: currentTask.shortName,
+              serializeTo: 'shortName'
+            }
+          ],
+          saveButton: {
+            text: 'save edits',
+            handler: 'editTaskHandler'
+          },
+          otherData: [
+            {
+              value: currentTask.id,
+              serializeTo: 'id'
+            }
+          ]
+        },
+        columns,
+        checkedColumnIndex: checkedColumnIndex,
+        description: currentTask.description,
+        links: currentTask.links,
+        currentPosition
       }
     }
     default: {
@@ -195,7 +241,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   createTask: taskConfig => dispatch(createTask(taskConfig)),
-  editTask: taskConfig => dispatch(editTask(taskConfig)),
+  editTask: (taskConfig) => dispatch(editTask(taskConfig)),
   closeHandler: () => dispatch(closePopupWindow())
 });
 

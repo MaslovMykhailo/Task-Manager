@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 
 import SortableList from "../../SortableList";
 import AddTask from './AddTask';
-import { moveTaskInsideColumn, moveTaskToAnotherColumn, removeTask } from "../../../actions";
+import {moveTaskInsideColumn, editTask, removeTask, openPopupWindow} from "../../../actions";
 import Task from "../../../components/app/project/Task";
 
 
-const TaskContainer = ({ columnId, tasksList, nextColumnId, positionInNextCol, onSortEnd, onRemove, onMove }) => {
+const TaskContainer = ({ columnId, tasksList, nextColumnId, positionInNextCol,
+                         onSortEnd, onRemove, onMove, onShow }) => {
   const tasks = tasksList.map((task, i) =>
     <Task shortName={task.shortName}
           onRemove={onRemove(columnId, i)}
@@ -15,8 +16,10 @@ const TaskContainer = ({ columnId, tasksList, nextColumnId, positionInNextCol, o
             oldColumnId: columnId,
             newColumnId: nextColumnId,
             ...task,
-            position: positionInNextCol + 1
+            newPosition: positionInNextCol + 1,
+            oldPosition: i
           }) : null}
+          onShow={onShow(columnId, i)}
     />
   );
 
@@ -60,7 +63,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch(removeTask(columnId, position))
   },
   onMove: taskConfig => () => {
-    dispatch(moveTaskToAnotherColumn(taskConfig));
+    dispatch(editTask(taskConfig));
+  },
+  onShow: (columnId, index) => () => {
+    dispatch(openPopupWindow('show-task', columnId, index));
   }
 });
 

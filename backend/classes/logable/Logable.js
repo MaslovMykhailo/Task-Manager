@@ -11,19 +11,19 @@ const Logable = (c, ...ignoreMethods) => {
           this[method] = function (...methodArgs) {
             
             const result = c.prototype[method].apply(this, methodArgs);
-            // console.log('Call method: ', method, ' in ', c.prototype);
-            // console.log('----------------------------------------------');
-            //
-            // console.log('Object state:');
-            // keys.forEach(key => {
-            //   let type = typeof this[key];
-            //   if (type === 'object' || type === 'function') {
-            //     console.log(key, ':', type)
-            //   } else {
-            //     console.log(key, ':', this[key])
-            //   }
-            // });
-            // console.log('==============================================');
+            console.log('Call method: ', method, ' in ', c.prototype);
+            console.log('----------------------------------------------');
+
+            console.log('Object state:');
+            keys.forEach(key => {
+              let type = typeof this[key];
+              if (type === 'object' || type === 'function') {
+                console.log(key, ':', type)
+              } else {
+                console.log(key, ':', this[key])
+              }
+            });
+            console.log('==============================================');
             
             return result;
           }

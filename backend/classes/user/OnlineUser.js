@@ -69,7 +69,7 @@ class OnlineUser extends  UserWithDB {
         break;
       }
       case receiveTypes.OPEN_PROJECT: {
-        const projectId = message.projectId;
+        const { projectId } = message;
         
         let openedProject = this.getCurrentProjectById(projectId);
         if (!openedProject) {
@@ -88,24 +88,10 @@ class OnlineUser extends  UserWithDB {
         break;
       }
       case receiveTypes.CHANGE_PROJECT: {
-        const { project } = message;
-        /// ????????????????????????
-        if (!this.getCurrentProjectById(project.id)) {
-          this.getProjectFromDB(project.id).then(p => {
-            this.addCurrentProject(p);
-            this.sendAllConnectionsWithoutOne(
-              messageCreators.sendChangedProject(p), connectionId
-            );
-          });
-          /// ????????????????????????
-        } else {
-          const changedProject = this.changeCurrentProject(project);
-          this.sendAllConnectionsWithoutOne(
-            messageCreators.sendChangedProject(changedProject), connectionId
-          );
-        }
-
-
+        const changedProject = this.changeCurrentProject(message.project);
+        this.sendAllConnectionsWithoutOne(
+          messageCreators.sendChangedProject(changedProject), connectionId
+        );
         break;
       }
       case receiveTypes.CLOSE_PROJECT: {

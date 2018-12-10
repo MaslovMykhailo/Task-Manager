@@ -73,7 +73,7 @@ class PopupTaskWindow extends Component {
     return () => {
       this.setState((state, props) => ({
         checkedColumnIndex: i,
-        position: props.columns[i].tasksCount + 1
+        position: props.columns[i].tasksCount + (i === props.checkedColumnIndex ? 0 : 1)
       }));
     }
   }
@@ -109,7 +109,6 @@ class PopupTaskWindow extends Component {
       const { taskDescription, links, newLinkName, newLinkSrc, checkedColumnIndex, position } = this.state;
 
       const createTaskHandler = (taskConfig) => {
-        closeHandler();
         createTask({ ...taskConfig,
           description: taskDescription,
           links, position,
@@ -118,13 +117,12 @@ class PopupTaskWindow extends Component {
       };
 
       const editTaskHandler = (taskConfig) => {
-        closeHandler();
         editTask({
           oldColumnId: columns[oldColumnIndex].columnId,
           newColumnId: columns[checkedColumnIndex].columnId,
           ...taskConfig,
           description: taskDescription, links,
-          newPosition: position, oldPosition
+          newPosition: position, oldPosition: oldPosition - 1
         })
       };
 
@@ -151,7 +149,11 @@ class PopupTaskWindow extends Component {
                     onClickHandler={changeColumnHandler}
           />
           <PositionField currentValue={position}
-                         minValue={1} maxValue={columns[checkedColumnIndex].tasksCount+1}
+                         minValue={1} maxValue={
+                           columns[checkedColumnIndex].tasksCount + (
+                             oldPosition && checkedColumnIndex === oldColumnIndex ? 0 : 1
+                           )
+                         }
                          incValue={incPosition}
                          decValue={decPosition}
                          title={'Position'}
@@ -228,7 +230,7 @@ const mapStateToProps = state => {
         checkedColumnIndex: checkedColumnIndex,
         description: currentTask.description,
         links: currentTask.links,
-        currentPosition
+        currentPosition: currentPosition + 1
       }
     }
     default: {

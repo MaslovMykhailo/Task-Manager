@@ -38,6 +38,18 @@ export default store => next => action => {
       socket.send(messageCreators.userLogout());
       break;
     }
+    case types.CREATE_TASK:
+    case types.EDIT_TASK:
+    case types.MOVE_TASK_INSIDE_COLUMN:
+    case types.REMOVE_TASK:
+    case types.CREATE_TASK_COLUMN:
+    case types.EDIT_TASK_COLUMN:
+    case types.MOVE_TASK_COLUMN:
+    case types.REMOVE_TASK_COLUMN: {
+      const project = store.getState().currentProject.present;
+      socketSendAsync(messageCreators.changeProject(project));
+      break;
+    }
     case types.OPEN_PROJECT: {
       socket.send(messageCreators.openProject(action.projectId));
       break;

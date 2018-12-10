@@ -19,6 +19,11 @@ export const openProject = projectId => ({
   projectId
 });
 
+export const changeProject = project => ({
+  type: sendTypes.CHANGE_PROJECT,
+  project
+});
+
 export const closeProject = projectId => ({
   type: sendTypes.CLOSE_PROJECT,
   projectId

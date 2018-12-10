@@ -110,7 +110,7 @@ const currentProject =  (state = emptyProject, action) => {
     case types.REMOVE_TASK: {
       const { columnId, position } = action;
 
-      const newColumns = state.columns.slice();
+      const newColumns = state.columns.slice().map(col => ({ ...col }));
       let colIndex = newColumns.findIndex(col => col.id === columnId);
       const newTasks = newColumns[colIndex].tasks.slice();
       newTasks.splice(position, 1);
@@ -144,6 +144,7 @@ export default undoable(currentProject, {
     types.CREATE_TASK_COLUMN,
     types.EDIT_TASK_COLUMN,
     types.REMOVE_TASK_COLUMN,
-    types.MOVE_TASK_COLUMN
+    types.MOVE_TASK_COLUMN,
+    types.REMOVE_TASK
   ])
 });

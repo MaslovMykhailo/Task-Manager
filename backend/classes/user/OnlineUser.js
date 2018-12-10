@@ -25,7 +25,15 @@ class OnlineUser extends  UserWithDB {
       this.connectionDidClose.bind(this)
     );
     this.connections.push(addedConnection);
-    addedConnection.send(messageCreators.sendCardList(this.getCards));
+
+    if (this.getCards.length) {
+      addedConnection.send(messageCreators.sendCardList(this.getCards));
+    } else {
+      this.getCardsFromDB().then(cards => {
+        this.setCards = cards;
+        addedConnection.send(messageCreators.sendCardList(cards));
+      })
+    }
   }
   
   connectionDidClose(connectionId) {
@@ -66,25 +74,38 @@ class OnlineUser extends  UserWithDB {
         let openedProject = this.getCurrentProjectById(projectId);
         if (!openedProject) {
           // need to get project form DB
-          openedProject = this.getProjectFromDB(projectId);
-          this.addCurrentProject(openedProject);
+          this.getProjectFromDB(projectId).then(project => {
+            this.addCurrentProject(project);
+            this.connections.find(c => c.id === connectionId).send(
+              messageCreators.sendProjectData(project)
+            );
+          });
+        } else {
+          this.connections.find(c => c.id === connectionId).send(
+            messageCreators.sendProjectData(openedProject)
+          );
         }
-        this.connections.find(c => c.id === connectionId).send(
-          messageCreators.sendProjectData(openedProject)
-        );
         break;
       }
       case receiveTypes.CHANGE_PROJECT: {
-        const { projectId } = message;
-
-        if (!this.getCurrentProjectById(projectId)) {
-          this.addCurrentProject(this.getProjectFromDB(projectId));
+        const { project } = message;
+        /// ????????????????????????
+        if (!this.getCurrentProjectById(project.id)) {
+          this.getProjectFromDB(project.id).then(p => {
+            this.addCurrentProject(p);
+            this.sendAllConnectionsWithoutOne(
+              messageCreators.sendChangedProject(p), connectionId
+            );
+          });
+          /// ????????????????????????
+        } else {
+          const changedProject = this.changeCurrentProject(project);
+          this.sendAllConnectionsWithoutOne(
+            messageCreators.sendChangedProject(changedProject), connectionId
+          );
         }
 
-        const changedProject = this.changeCurrentProject(message.project.id);
-        this.sendAllConnectionsWithoutOne(
-          messageCreators.sendChangedProject(changedProject), connectionId
-        );
+
         break;
       }
       case receiveTypes.CLOSE_PROJECT: {

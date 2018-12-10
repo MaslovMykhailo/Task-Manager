@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-const Card = require('./card');
-const Project = require('./project');
+// const CardModel = require('./card');
+// const ProjectModel = require('./project');
 
 const UserSchema = new mongoose.Schema({
   name: String,
   id: String,
-  cards: [Card],
-  project: [Project]
+  cards: [Object],
+  projects: [Object]
 });
 
 const User = mongoose.model('User', UserSchema);

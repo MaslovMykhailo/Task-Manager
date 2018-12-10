@@ -1,13 +1,19 @@
 const User = require('./User');
-const DB = require('../database/FakeDBInterface');
+const DB = require('../database/DatabaseConnector');
 
 class UserWithDB extends User {
   constructor(id, name) {
     super(id, name);
     
-    this.setCards = DB.getUserCards({ id: this.id, name: this.name });
+    // DB.getUserCards({ id: this.id, name: this.name }).then(cardsList => {
+    //   this.setCards = cardsList;
+    // });
   }
-  
+
+  getCardsFromDB() {
+    return DB.getUserCards({ id: this.id, name: this.name });
+  }
+
   saveCardsToDB() {
     DB.setUserCards(this.id, this.getCards);
   }
@@ -17,8 +23,6 @@ class UserWithDB extends User {
   }
   
   saveProjectToDB(projectId) {
-    console.log(projectId);
-    console.log(this.currentProjects);
     DB.setUserProjectById(
       this.id,
       this.currentProjects.find(p => p.id === projectId)

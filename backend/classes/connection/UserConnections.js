@@ -1,6 +1,6 @@
 const verify = require('../../verify/index');
 const OnlineUser = require('../user/OnlineUser');
-const Logable = require('../../logable/Logable');
+const Logable = require('../logable/Logable');
 
 class UserConnections {
   constructor() {

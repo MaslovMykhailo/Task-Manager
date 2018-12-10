@@ -1,4 +1,4 @@
-const Logable = require('../../logable/Logable');
+const Logable = require('../logable/Logable');
 
 const exampleProject = {
   columns: [

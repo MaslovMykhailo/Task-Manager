@@ -2,7 +2,7 @@ const UserWithDB = require('./UserWithDB');
 const Connection = require('../connection/Connection');
 const receiveTypes = require('../../constants/ReceiveMessageTypes');
 const messageCreators = require('../../messageCreators/sendMessageCreators');
-const Logable = require('../../logable/Logable');
+const Logable = require('../logable/Logable');
 
 
 class OnlineUser extends  UserWithDB {

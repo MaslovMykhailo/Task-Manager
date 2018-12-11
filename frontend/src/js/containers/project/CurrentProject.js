@@ -14,8 +14,8 @@ class CurrentProject extends Component {
   }
 
   componentDidMount() {
-    const { loadProjectData, id } = this.props;
-    if (id) loadProjectData(id);
+    const { loadProjectData, id, dataIsLoading } = this.props;
+    if (id && !dataIsLoading) loadProjectData(id);
   }
 
   render() {
@@ -39,7 +39,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     id, isSignedIn, dataIsLoading,
-    projectData: state.currentProject.present,
+    projectId: state.currentProject.present.id,
     popupWindowIsOpen: state.status.popupWindowIsOpen,
   };
 };

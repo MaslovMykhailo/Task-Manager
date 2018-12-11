@@ -18,6 +18,8 @@ export default store => next => action => {
   switch (action.type) {
     case types.SIGN_IN_SUCCESS: {
       socket.send(messageCreators.userLogin(action.response.tokenId));
+      const projectId = store.getState().currentProject.present.id;
+      if (projectId) socketSendAsync(messageCreators.openProject(projectId));
       break;
     }
     case types.MOVE_PROJECT_CARD:
@@ -45,7 +47,9 @@ export default store => next => action => {
     case types.CREATE_TASK_COLUMN:
     case types.EDIT_TASK_COLUMN:
     case types.MOVE_TASK_COLUMN:
-    case types.REMOVE_TASK_COLUMN: {
+    case types.REMOVE_TASK_COLUMN:
+    case types.UNDO_CURRENT_PROJECT:
+    case types.REDO_CURRENT_PROJECT: {
       const project = store.getState().currentProject.present;
       socketSendAsync(messageCreators.changeProject(project));
       break;

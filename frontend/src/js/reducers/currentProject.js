@@ -6,7 +6,6 @@ import {arrayMove} from "react-sortable-hoc";
 
 const emptyProject = {
   id: undefined,
-  name: undefined,
   columns: [],
   popupWindow: {
     id: undefined,

@@ -58,7 +58,7 @@ const currentProject =  (state = emptyProject, action) => {
     }
     case types.CREATE_TASK: {
       const { columnId, shortName, description, links, position } = action.taskConfig;
-      const newColumns = state.columns.slice();
+      const newColumns = state.columns.slice().map(col => ({ ...col }));
       let colIndex = newColumns.findIndex(col => col.id === columnId);
 
       const newTasks = newColumns[colIndex].tasks.slice();
@@ -77,7 +77,7 @@ const currentProject =  (state = emptyProject, action) => {
     case types.MOVE_TASK_INSIDE_COLUMN: {
       const { columnId, oldIndex, newIndex } = action;
 
-      const newColumns = state.columns.slice();
+      const newColumns = state.columns.slice().map(col => ({ ...col }));;
       let colIndex = newColumns.findIndex(col => col.id === columnId);
       newColumns[colIndex].tasks = arrayMove(newColumns[colIndex].tasks, oldIndex, newIndex);
 
@@ -90,7 +90,7 @@ const currentProject =  (state = emptyProject, action) => {
         newPosition, oldPosition
       } = action.taskConfig;
 
-      const newColumns = state.columns.slice();
+      const newColumns = state.columns.slice().map(col => ({ ...col }));;
 
       const oldColIndex = newColumns.findIndex(col => col.id === oldColumnId);
       const oldColTasks = newColumns[oldColIndex].tasks.slice();
@@ -144,6 +144,9 @@ export default undoable(currentProject, {
     types.EDIT_TASK_COLUMN,
     types.REMOVE_TASK_COLUMN,
     types.MOVE_TASK_COLUMN,
+    types.EDIT_TASK,
+    types.CREATE_TASK,
+    types.MOVE_TASK_INSIDE_COLUMN,
     types.REMOVE_TASK
   ])
 });

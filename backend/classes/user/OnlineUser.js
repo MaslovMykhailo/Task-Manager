@@ -1,11 +1,11 @@
-const UserWithDB = require('./UserWithDB');
+const UserConnectedToDB = require('./UserConnectedToDB');
 const Connection = require('../connection/Connection');
 const receiveTypes = require('../../constants/ReceiveMessageTypes');
 const messageCreators = require('../../messageCreators/sendMessageCreators');
 const Logable = require('../logable/Logable');
 
 
-class OnlineUser extends  UserWithDB {
+class OnlineUser extends  UserConnectedToDB {
   constructor(id, name, removeUserCallback) {
     super(id, name);
     this.connections = [];
@@ -41,10 +41,9 @@ class OnlineUser extends  UserWithDB {
     this.connections[index].clearListeners();
     this.connections.splice(index, 1);
 
-    this.saveCardsToDB();
-    this.saveProjectsListToDB();
-    
-    if (!this.connections.length) this.removeCallback(this.id);
+    Promise.all([this.saveCardsToDB(), this.saveProjectsListToDB()]).then(() => {
+      if (!this.connections.length) this.removeCallback(this.id);
+    });
   }
   
   sendAllConnectionsWithoutOne(message, connectionId) {

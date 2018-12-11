@@ -1,13 +1,9 @@
 const User = require('./User');
 const DB = require('../database/DatabaseConnector');
 
-class UserWithDB extends User {
+class UserConnectedToDB extends User {
   constructor(id, name) {
     super(id, name);
-    
-    // DB.getUserCards({ id: this.id, name: this.name }).then(cardsList => {
-    //   this.setCards = cardsList;
-    // });
   }
 
   getCardsFromDB() {
@@ -15,7 +11,7 @@ class UserWithDB extends User {
   }
 
   saveCardsToDB() {
-    DB.setUserCards(this.id, this.getCards);
+    return DB.setUserCards(this.id, this.getCards);
   }
   
   getProjectFromDB(projectId) {
@@ -30,8 +26,8 @@ class UserWithDB extends User {
   }
   
   saveProjectsListToDB() {
-     DB.setUserProjectsListById(this.id, this.currentProjects);
+     return DB.setUserProjectsListById(this.id, this.cards, this.currentProjects);
   }
 }
 
-module.exports = UserWithDB;
+module.exports = UserConnectedToDB;

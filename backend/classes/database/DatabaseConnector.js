@@ -61,20 +61,23 @@ class DatabaseConnector {
   }
 
   setUserCards(userId, cards) {
-    UserModel.findOneAndUpdate(
-      { id: userId },
-      { $set: { cards: cards } },
-      (error) => {
-        if (error) console.log(error);
-      });
+    return new Promise(resolve => {
+      UserModel.findOneAndUpdate(
+        {id: userId},
+        {$set: {cards: cards}},
+        (error) => {
+          if (error) console.log(error);
+          resolve();
+        });
+    })
   }
 
   setUserProjectById(userId, projectData) {
     UserModel.findOne({ id: userId }, (err, user) => {
       if (err) console.log(err);
 
-      const projectIndex = user.projects.findIndex(p => p.id === projectData.id);
       const projects = user.projects.slice();
+      const projectIndex = projects.findIndex(p => p.id === projectData.id);
       projects[projectIndex] = projectData;
 
       user.update({ projects: projects }, err => {
@@ -83,13 +86,28 @@ class DatabaseConnector {
     });
   }
 
-  setUserProjectsListById(userId, projectDataList) {
-    UserModel.findOneAndUpdate(
-      { id: userId },
-      { $set: { projects: projectDataList } },
-      (error) => {
-        if (error) console.log(error);
-      });
+  setUserProjectsListById(userId, cardsList, projectDataList) {
+    return new Promise(resolve => {
+      UserModel.findOne({ id: userId }, (err, user) => {
+        if(err) console.log(err);
+
+        const projects = user.projects.slice().filter(p => cardsList.find(card => card.id === p.id));
+
+        projectDataList.forEach(p => {
+          let index = projects.findIndex(old => old.id === p.id);
+          if (index !== -1) {
+            projects[index] = p;
+          } else {
+            projects.push(p);
+          }
+        });
+
+        user.update({ projects: projects }, err => {
+          if (err) console.log(err);
+          resolve();
+        })
+      })
+    });
   }
 }
 

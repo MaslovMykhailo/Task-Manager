@@ -90,7 +90,7 @@ const currentProject =  (state = emptyProject, action) => {
         newPosition, oldPosition
       } = action.taskConfig;
 
-      const newColumns = state.columns.slice().map(col => ({ ...col }));;
+      const newColumns = state.columns.slice().map(col => ({ ...col }));
 
       const oldColIndex = newColumns.findIndex(col => col.id === oldColumnId);
       const oldColTasks = newColumns[oldColIndex].tasks.slice();

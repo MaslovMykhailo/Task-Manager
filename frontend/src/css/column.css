@@ -28,7 +28,7 @@
     align-self: center;
     font-size: 20px;
     color: white;
-    cursor: text;
+    cursor: move;
 }
 
 .column-edit {

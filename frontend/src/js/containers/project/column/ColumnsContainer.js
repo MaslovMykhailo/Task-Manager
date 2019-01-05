@@ -18,7 +18,10 @@ const ColumnsContainer = ({ columnsList, onSortEnd, onClickByColumnHandler }) =>
     </TaskColumn>
   ));
 
-  const shouldCancelStart = e => !e.target.classList.contains('column-title');
+  const shouldCancelStart = e =>
+    !e.target.classList.contains('column-title') &&
+    !e.target.classList.contains('column-name');
+
   return(
     <SortableList className={'column-container'}
                   itemClassName={'column-wrapper'}

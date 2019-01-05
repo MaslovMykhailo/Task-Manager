@@ -1,4 +1,8 @@
 const Logable = (c, ...ignoreMethods) => {
+  if (process.argv[2] === 'prod') {
+    return c;
+  }
+
   return class extends c {
     constructor(...args) {
       super(...args);

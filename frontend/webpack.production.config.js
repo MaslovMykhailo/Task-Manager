@@ -32,7 +32,7 @@ module.exports = {
       debug: false
     }),
     new HtmlWebpackPlugin({
-      title: 'Task Manager Dev',
+      title: 'Task Manager',
       template: './src/index.tpl.html',
       inject: 'body',
       filename: 'index.html',

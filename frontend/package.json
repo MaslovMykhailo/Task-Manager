@@ -4,9 +4,9 @@
   "description": "Frontend for Task Manager",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build:dev && webpack-dev-server --env=development --open",
-    "build:dev": "webpack --env=development --progress --colors",
-    "build:prod": "webpack --env=production --progress --colors",
+    "start": "npm run build-dev && webpack-dev-server --env=development --open",
+    "build-dev": "webpack --env=development --progress --colors",
+    "build-prod": "webpack --env=production --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Maslov Michael <maslov.mikhail2000@gmail.com>",

@@ -13,7 +13,6 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() { console.log('Database is connected!') });
 
 const UC = new UserConnections();
-
 app.ws('/', function(ws) {
   ws.on('message', msg => {
     const message = JSON.parse(msg);
@@ -23,4 +22,9 @@ app.ws('/', function(ws) {
   });
 });
 
-app.listen(8000);
+if (process.argv[2] === 'prod') {
+  app.use(express.static('../frontend/dist'));
+}
+
+app.listen(3000);
+

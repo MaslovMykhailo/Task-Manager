@@ -53,3 +53,19 @@
     min-width: 80px;
     background: rgba(0, 128, 128, .4);
 }
+
+@media screen and (max-width: 1000px) {
+    .project-content {
+        flex-direction: column-reverse  ;
+    }
+    .project-header__user-info {
+         background: teal;
+         height: 105px;
+         width: 105px;
+     }
+    .project-name {
+        color: white;
+        font-size: 68px;
+        margin-left: 5%;
+    }
+}
